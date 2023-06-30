@@ -73,13 +73,19 @@
                     </div>
                 </div>
 
-                <div class="row mt-3">
+                <div class="row mt-5">
                     <div class="col-6 offset-3">
                         <div class="d-grid">
                             <button type="submit" [disabled]="loginForm.invalid"
                                 style="background-color: blueviolet; border-color: blueviolet;"
                                 class="btn rounded-pill btn-primary">
-                                Login
+                                <div class="d-sm-inline-flex" style="width:fit-content;">
+                                    <span class="p">Login</span>
+                                    &nbsp;
+                                    <span class="material-icons p">
+                                        login
+                                    </span>
+                                </div>
                             </button>
 
                         </div>

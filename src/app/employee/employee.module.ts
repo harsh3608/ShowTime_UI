@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
     LoginComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     CommonModule,
     EmployeeRoutingModule,
     MatFormFieldModule,
@@ -27,7 +31,10 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     MatSelectModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    }),
   ]
 })
 export class EmployeeModule { }
