@@ -1,0 +1,60 @@
+.parent {
+  height: 550px;
+  width: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.card-1 {
+  width: 35%;
+  height: match-parent;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.card-2 {
+  width: 65%;
+  height: match-parent;
+  overflow: hidden;
+  /* opacity: 0.7; */
+  background-color: rgb(252, 243, 243);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-form-field {
+  width: 350px;
+}
+
+.icon-container {
+  transform: translateY(-111%);
+  right: 46px;
+  position: absolute;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#forgot-password {
+  color: blue;
+}
+
+#forgot-password:hover {
+  color: red;
+}
+
+.blur-background {
+  /*filter: blur(2px);  Apply a blur effect */
+  pointer-events: none; /* Disable mouse interactions */
+  opacity: 0.7; /* Adjust the opacity to make it visually faded */
+}
