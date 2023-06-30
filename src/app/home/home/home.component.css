@@ -1,0 +1,9 @@
+.logo {
+    max-height: 100%; /* Set the maximum height of the image to 100% of the parent element (toolbar) */
+    max-width: 100%; /* Optionally, you can also set the maximum width to ensure the image doesn't overflow horizontally */
+    height: auto;
+}
+
+.spacer {
+    flex: 1 1 auto
+}
