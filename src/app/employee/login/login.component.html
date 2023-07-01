@@ -1,0 +1,104 @@
+<div class="parent" [class.blur-background]="isLoading">
+    <div class="card-1">
+
+        <div class="row p-3" style="margin-top: 50%; color: rgb(66, 64, 64); font-size: larger;">
+            <h1><strong>Login</strong></h1>
+            <span>To Mark Attendance, Log Punches.</span>
+        </div>
+
+        <div class="row" style="margin-top: 50%;">
+            <img class="logo" src="assets/images/showtime-logo-1.JPG" alt="shopMart">
+        </div>
+    </div>
+
+    <div class="card-2">
+        <div class="p-3" style="align-self: flex-end;scale: 0.8;">
+            <button mat-icon-button mat-dialog-close aria-label="Close" (click)="CloseDialog()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <form id="form" [formGroup]="loginForm" (ngSubmit)="SubmitloginForm()">
+            <div class="row g-0">
+                <div class="col text-center p-2 mb-2">
+                    <h1 id="login-header">Show Time Login</h1>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col mb-3 form-input">
+                        <div style="margin-bottom: 10px;">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="Email" formControlName="Email">
+                            <div style="font-size: small;" class="form-text text-danger"
+                                *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
+                                Email is Required !
+                            </div>
+                            <div style="font-size: small;" class="form-text text-danger"
+                                *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">
+                                Please enter valid Email !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3 ">
+                    <div class="col mb-3 form-input">
+                        <label for="Password" class="form-label">Password</label>
+                        <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="Password"
+                            formControlName="Password" max-length="15">
+                        <span class="icon-container">
+
+                            <span class="material-icons " aria-hidden="true" [hidden]="!showPassword"
+                                (click)="togglePasswordVisibility()">
+                                visibility
+                            </span>
+
+                            <span class="material-icons" aria-hidden="true" [hidden]="showPassword"
+                                (click)="togglePasswordVisibility()">
+                                visibility_off
+                            </span>
+
+                        </span>
+                        <div style="font-size: small;" class="form-text text-danger"
+                            *ngIf="Password.errors?.['required'] && (Password.touched || Password.dirty)">
+                            Password is Required !
+                        </div>
+                        <div class="form-text text-danger"
+                            *ngIf="Password.errors?.['pattern'] || Password.errors?.['minLength'] || Password.errors?.['maxLength'] && (Password.touched || Password.dirty)">
+                            Password should contain atleast 1 lowercase, 1 uppercase alphabet, 1 number and 1
+                            special Character and be of 6-15
+                            characters !
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-6 offset-3">
+                        <div class="d-grid">
+                            <button type="submit" [disabled]="loginForm.invalid"
+                                style="background-color: blueviolet; border-color: blueviolet;"
+                                class="btn rounded-pill btn-primary">
+                                <div class="d-sm-inline-flex" style="width:fit-content;">
+                                    <span class="p">Login</span>
+                                    &nbsp;
+                                    <span class="material-icons p">
+                                        login
+                                    </span>
+                                </div>
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+        <!-- <div style="margin-top: 40%; font-size: medium;">
+            <button mat-button (click)="OpenRegisterDialog(0)">
+                Don't have an account? Create new account
+            </button>
+        </div> -->
+    </div>
+</div>
