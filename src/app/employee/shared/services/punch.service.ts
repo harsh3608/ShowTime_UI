@@ -1,18 +1,25 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Punch, PunchAddResponse, UserStatusResponse } from '../models/punch-models';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PunchService {
-  userBaseServerLink: string = 'https://localhost:7231/api/Punch/';
+  punchBaseServerLink: string = 'https://localhost:7231/api/Punch/';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(
     private http: HttpClient
   ) { }
 
-  AddPunch() {
-    
+  AddPunch(punch: Punch): Observable<PunchAddResponse>{
+    return this.http.post<PunchAddResponse>(this.punchBaseServerLink+'AddPunch'+punch, { headers: this.headers } )
+  }
+
+  GetUserLatestPunchStatus(userId: any): Observable<UserStatusResponse>{
+    return this.http.get<UserStatusResponse>(this.punchBaseServerLink+'GetUserLatestPunchStatus'+userId, { headers: this.headers } )
   }
   
 }
