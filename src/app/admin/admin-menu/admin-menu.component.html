@@ -1,1 +1,72 @@
-<p>admin-menu works!</p>
+<mat-toolbar color="white" class=" d-flex justify-content-center ">
+    &nbsp;&nbsp;
+    <img class="logo" src="assets/images/convergesol-final-logo.png" alt="logo">&nbsp;&nbsp;
+    <img class="logo" src="assets/images/showtime-logo-1.JPG" alt="logo">&nbsp;&nbsp;
+
+    <div class="spacer"></div>
+
+    &nbsp;&nbsp;
+    <div class="align-self-end d-flex" style="height: 100%">
+        <div>
+            <h2 class="mt-3">
+                Hello, {{getPersonName()}}
+            </h2>
+
+        </div>&nbsp;&nbsp;
+
+        <span class="text-success mt-3">
+            (Admin)
+        </span>
+
+        &nbsp;
+
+        <button mat-button [matMenuTriggerFor]="menu" class="mt-3">
+            <span class="material-icons">
+                account_circle
+            </span>
+        </button>
+
+        <mat-menu #menu="matMenu">
+
+            <button mat-menu-item>
+                <span class="material-icons">
+                    manage_accounts
+                </span>
+                &nbsp;Manage Account
+            </button>
+
+            <button mat-menu-item>
+                <span class="material-icons">
+                    sync_lock
+                </span>
+                &nbsp;Change Password
+            </button>
+
+            <button mat-menu-item (click)="openLogOutDialog()">
+                <span class="material-icons">
+                    logout
+                </span>
+                &nbsp;Log Out
+            </button>
+        </mat-menu>
+    </div>
+
+</mat-toolbar>
+
+
+
+
+
+
+
+<ng-template #dialogTemplate class="d-flex flex-column">
+
+    <h2 mat-dialog-title>Confirm Logout</h2>
+
+    <mat-dialog-content class="mb-4">Are you sure you want to log out?</mat-dialog-content>
+
+    <mat-dialog-actions class="d-flex flex-row justify-content-between last">
+        <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
+        <button class="btn btn-danger" [mat-dialog-close]="true" (click)="LogOut()">Logout</button>
+    </mat-dialog-actions>
+</ng-template>

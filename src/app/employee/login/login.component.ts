@@ -35,8 +35,6 @@ export class LoginComponent implements OnInit {
   }
 
   SubmitloginForm(){
-
-    console.log(this.loginForm.value);
     this.isLoading = true;
     setTimeout(() => {
       this.loginForm.markAllAsTouched();
