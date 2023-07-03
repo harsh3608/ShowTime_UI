@@ -19,5 +19,13 @@ export interface UserStatusResponse {
     isSuccess: boolean
     response: boolean
     message: string
-  }
+}
+  
+
+export interface PunchedUsersResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: Punch[]
+    message: string
+}
   

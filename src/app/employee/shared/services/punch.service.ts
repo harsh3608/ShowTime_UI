@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Punch, PunchAddResponse, UserStatusResponse } from '../models/punch-models';
+import { Punch, PunchAddResponse, PunchedUsersResponse, UserStatusResponse } from '../models/punch-models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,11 +15,14 @@ export class PunchService {
   ) { }
 
   AddPunch(punch: Punch): Observable<PunchAddResponse>{
-    return this.http.post<PunchAddResponse>(this.punchBaseServerLink+'AddPunch'+punch, { headers: this.headers } )
+    return this.http.post<PunchAddResponse>(this.punchBaseServerLink+'AddPunch',punch, { headers: this.headers } )
   }
 
   GetUserLatestPunchStatus(userId: any): Observable<UserStatusResponse>{
-    return this.http.get<UserStatusResponse>(this.punchBaseServerLink+'GetUserLatestPunchStatus'+userId, { headers: this.headers } )
+    return this.http.get<UserStatusResponse>(this.punchBaseServerLink+'GetUserLatestPunchStatus/'+userId, { headers: this.headers } )
   }
   
+  GetAllPunchedUsers(): Observable<PunchedUsersResponse> {
+    return this.http.get<PunchedUsersResponse> (this.punchBaseServerLink + 'GetAllPunchedInUsers', { headers: this.headers })
+  }
 }

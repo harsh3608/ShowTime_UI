@@ -10,8 +10,10 @@ import { Punch } from '../shared/models/punch-models';
 })
 export class EmployeeDashboardComponent implements OnInit {
   userId!:any;
+  userName!: string;
   isPunchedIn: boolean = false;
-  PunchRequest!: Punch;
+  punchedInUsers: Punch[] = [];
+
 
   constructor(
     private punchService: PunchService,
@@ -20,6 +22,9 @@ export class EmployeeDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
+    this.userName = this.authService.getPersonName();
+    this.getUserStatus();
+    this.GetAllPunchedUsers();
   }
 
   getUserStatus() {
@@ -32,8 +37,34 @@ export class EmployeeDashboardComponent implements OnInit {
     );
   }
 
-  AddPunch(){
-
+  AddPunch(status: boolean){
+    const punch: Punch = {
+      id: this.userId,
+      punchDateTime: '2023-07-03T11:52:55.378Z',
+      userId: this.userId,
+      userName: this.userName,
+      punchStatus: status
+    }
+    this.punchService.AddPunch(punch).subscribe(
+      (res) => {
+        if(res.isSuccess) {
+          this.isPunchedIn = res.response.punchStatus;
+        }
+      }
+    );
+    this.GetAllPunchedUsers();
   }
+
+
+  GetAllPunchedUsers() {
+    this.punchService.GetAllPunchedUsers().subscribe(
+      (res) => {
+        if(res.isSuccess){
+          this.punchedInUsers = res.response;
+        }
+      }
+    )
+  }
+
 
 }
