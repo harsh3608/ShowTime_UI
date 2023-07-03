@@ -10,8 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeMenuComponent } from './employee-menu/employee-menu.component';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 
@@ -23,8 +21,6 @@ import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashbo
     EmployeeDashboardComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
     CommonModule,
     EmployeeRoutingModule,
     MatFormFieldModule,
