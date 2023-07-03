@@ -11,6 +11,8 @@ export class PunchService {
     private http: HttpClient
   ) { }
 
-  
+  AddPunch() {
+    
+  }
   
 }
