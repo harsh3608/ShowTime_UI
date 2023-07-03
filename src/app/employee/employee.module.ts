@@ -12,11 +12,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeMenuComponent } from './employee-menu/employee-menu.component';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    EmployeeMenuComponent,
+    EmployeeDashboardComponent
   ],
   imports: [
     BrowserModule,
