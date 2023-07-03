@@ -10,17 +10,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { EmployeeMenuComponent } from './employee-menu/employee-menu.component';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    EmployeeMenuComponent,
+    EmployeeDashboardComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
     CommonModule,
     EmployeeRoutingModule,
     MatFormFieldModule,
@@ -35,6 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,
     }),
+    MatToolbarModule,
+    MatDialogModule,
+    MatMenuModule,
   ]
 })
 export class EmployeeModule { }

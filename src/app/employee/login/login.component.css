@@ -54,7 +54,7 @@ form {
 }
 
 .blur-background {
-  /*filter: blur(2px);  Apply a blur effect */
+  filter: blur(2px);  /* Apply a blur effect */
   pointer-events: none; /* Disable mouse interactions */
   opacity: 0.7; /* Adjust the opacity to make it visually faded */
 }
