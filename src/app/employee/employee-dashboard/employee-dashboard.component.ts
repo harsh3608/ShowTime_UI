@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PunchService } from '../shared/services/punch.service';
 import { AuthService } from '../shared/authorization/auth.service';
 import { Punch } from '../shared/models/punch-models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-dashboard',
@@ -13,11 +14,13 @@ export class EmployeeDashboardComponent implements OnInit {
   userName!: string;
   isPunchedIn: boolean = false;
   punchedInUsers: Punch[] = [];
+  punchesForToday: Punch[] = [];
 
 
   constructor(
     private punchService: PunchService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -25,6 +28,7 @@ export class EmployeeDashboardComponent implements OnInit {
     this.userName = this.authService.getPersonName();
     this.getUserStatus();
     this.GetAllPunchedUsers();
+    this.GetAllPunchesForToday();
   }
 
   getUserStatus() {
@@ -49,6 +53,17 @@ export class EmployeeDashboardComponent implements OnInit {
       (res) => {
         if(res.isSuccess) {
           this.isPunchedIn = res.response.punchStatus;
+          this.GetAllPunchedUsers();
+          if(this.isPunchedIn){
+            this.toastr.success( res.response.userName+' Punched In Successfully!', 'Punched In!',{
+              timeOut: 2000,
+            });
+          }else{
+            this.GetAllPunchedUsers();
+            this.toastr.warning(res.response.userName+' Punched Out Successfully!', 'Punched Out!',{
+              timeOut: 2000,
+            });
+          }
         }
       }
     );
@@ -61,11 +76,20 @@ export class EmployeeDashboardComponent implements OnInit {
       (res) => {
         if(res.isSuccess){
           this.punchedInUsers = res.response;
-          console.log(this.punchedInUsers);
         }
       }
     )
   }
 
 
+  GetAllPunchesForToday() {
+    this.punchService.GetAllUserPunchesForToday(this.userId).subscribe(
+      (res) => {
+        if(res.isSuccess) {
+          this.punchesForToday = res.response;
+          console.log(this.punchesForToday);
+        }
+      }
+    )
+  }
 }

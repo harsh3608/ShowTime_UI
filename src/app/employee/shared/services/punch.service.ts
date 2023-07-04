@@ -25,4 +25,8 @@ export class PunchService {
   GetAllPunchedUsers(): Observable<PunchedUsersResponse> {
     return this.http.get<PunchedUsersResponse> (this.punchBaseServerLink + 'GetAllPunchedInUsers', { headers: this.headers })
   }
+
+  GetAllUserPunchesForToday(userId: any): Observable<PunchedUsersResponse> {
+    return this.http.get<PunchedUsersResponse> (this.punchBaseServerLink + 'GetAllUserPunchesForToday/'+userId, { headers: this.headers })
+  }
 }
