@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthConfigInterceptor } from './employee/shared/authorization/interceptor/auth-config.interceptor';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,15 @@ import { AuthConfigInterceptor } from './employee/shared/authorization/intercept
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,
     }),
+    
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthConfigInterceptor,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

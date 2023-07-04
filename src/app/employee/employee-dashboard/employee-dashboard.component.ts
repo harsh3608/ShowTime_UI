@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PunchService } from '../shared/services/punch.service';
 import { AuthService } from '../shared/authorization/auth.service';
-import { Punch } from '../shared/models/punch-models';
+import { Punch, TimeSpan } from '../shared/models/punch-models';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-employee-dashboard',
@@ -15,17 +16,24 @@ export class EmployeeDashboardComponent implements OnInit {
   isPunchedIn: boolean = false;
   punchedInUsers: Punch[] = [];
   punchesForToday: Punch[] = [];
+  punchedinTime!: TimeSpan;
+  formattedPunchedinTime!: string;
 
 
   constructor(
     private punchService: PunchService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
     this.userName = this.authService.getPersonName();
+    this.CallCommonFunctions();
+  }
+
+  CallCommonFunctions() {
+    this.GetPunchedInTime();
     this.getUserStatus();
     this.GetAllPunchedUsers();
     this.GetAllPunchesForToday();
@@ -36,6 +44,7 @@ export class EmployeeDashboardComponent implements OnInit {
       (res) => {
         if(res.isSuccess){
           this.isPunchedIn = res.response;
+          
         };
       }
     );
@@ -53,13 +62,13 @@ export class EmployeeDashboardComponent implements OnInit {
       (res) => {
         if(res.isSuccess) {
           this.isPunchedIn = res.response.punchStatus;
-          this.GetAllPunchedUsers();
+          this.CallCommonFunctions();
           if(this.isPunchedIn){
             this.toastr.success( res.response.userName+' Punched In Successfully!', 'Punched In!',{
               timeOut: 2000,
             });
           }else{
-            this.GetAllPunchedUsers();
+            this.CallCommonFunctions();
             this.toastr.warning(res.response.userName+' Punched Out Successfully!', 'Punched Out!',{
               timeOut: 2000,
             });
@@ -67,7 +76,7 @@ export class EmployeeDashboardComponent implements OnInit {
         }
       }
     );
-    this.GetAllPunchedUsers();
+    this.CallCommonFunctions();
   }
 
 
@@ -81,15 +90,34 @@ export class EmployeeDashboardComponent implements OnInit {
     )
   }
 
+  GetPunchedInTime() {
+    this.punchService.CalculateTotalPunchedInTime(this.userId).subscribe(
+      (res) => {
+        if(res.isSuccess) {
+          this.punchedinTime = res.response; 
+
+          // const hours = moment.duration(this.punchedinTime).hours();
+          // const minutes = moment.duration(this.punchedinTime).minutes();
+          // const seconds = moment.duration(this.punchedinTime).seconds();
+          this.formattedPunchedinTime = (
+            moment.duration(this.punchedinTime).hours() +'h :'+
+            moment.duration(this.punchedinTime).minutes()+'m'
+          );
+          
+        }
+      }
+    ); 
+  }
 
   GetAllPunchesForToday() {
     this.punchService.GetAllUserPunchesForToday(this.userId).subscribe(
       (res) => {
         if(res.isSuccess) {
           this.punchesForToday = res.response;
-          console.log(this.punchesForToday);
         }
       }
     )
   }
+
+
 }
