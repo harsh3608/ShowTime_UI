@@ -21,20 +21,17 @@
             <div class="container border">
                 <h1> Currently Punched In Members</h1>
 
-                <table>
-                    <tr>
-                        <th>i</th>
-                        <th>name</th>
-                        <th>time</th>
-                        <th>status</th>
-                    </tr>
-                    <tr *ngFor="let user of punchedInUsers; i is index">
-                        <td>i+1</td>
-                        <td>{{user.userName}}</td>
-                        <td>{{user.punchDateTime | date: 'dd/MM/yyyy'}}</td>
-                        <td>{{user.punchStatus}}</td>
-                    </tr> 
-                </table>
+                <div class="container border m-2 p-3 w-75" *ngFor="let punch of punchedInUsers">
+                    <div class="d-flex flex-row justify-content-between">
+                        <h2>{{punch.userName}}</h2>
+                        
+
+                        <h3>{{punch.punchDateTime | date: 'dd-MMM-yyyy h:mm a'}}</h3>
+
+                        <span class="btn rounded-pill bg-success text-white">Punched In</span>
+                    </div>
+            
+                </div>
             </div>
         </div>
 

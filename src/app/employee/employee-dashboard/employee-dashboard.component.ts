@@ -61,6 +61,7 @@ export class EmployeeDashboardComponent implements OnInit {
       (res) => {
         if(res.isSuccess){
           this.punchedInUsers = res.response;
+          console.log(this.punchedInUsers);
         }
       }
     )
