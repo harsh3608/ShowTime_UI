@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginDTO, LoginResponse, RegisterDTO } from '../models/employee-models';
+import { ChangePassword, LoginDTO, LoginResponse, PasswordReturnResponse, RegisterDTO } from '../models/employee-models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   userBaseServerLink: string = 'https://localhost:7231/api/Account/';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(
     private http: HttpClient
@@ -21,6 +22,9 @@ export class AccountService {
     return this.http.post<LoginResponse>(this.userBaseServerLink+'Register', request);
   }
 
+  ChangePassword(model:ChangePassword): Observable<PasswordReturnResponse> {
+    return this.http.post<PasswordReturnResponse>(this.userBaseServerLink+'Change-Password', model, { headers: this.headers });
+  }
 
 
 }

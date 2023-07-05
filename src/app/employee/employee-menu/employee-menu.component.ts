@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AuthService } from '../shared/authorization/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-employee-menu',
@@ -21,8 +22,6 @@ export class EmployeeMenuComponent implements OnInit{
   ngOnInit(): void {
     
   }
-
-  
 
   openLogOutDialog(){
     const dialogRef: MatDialogRef<any> = this.dialog.open(
@@ -44,6 +43,17 @@ export class EmployeeMenuComponent implements OnInit{
 
   getPersonName(){
     return this.authService.getPersonName();
+  }
+
+  openChangePasswordDialog(){
+    const dialogRef = this.dialog.open(ChangePasswordComponent,
+      {
+        data: {  }
+      }
+    );
+    dialogRef.addPanelClass('rounded-dialog-container');
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
 }

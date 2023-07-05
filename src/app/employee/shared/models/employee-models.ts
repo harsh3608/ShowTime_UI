@@ -29,3 +29,18 @@ export interface RegisterDTO {
   jobRole: string
 }
   
+
+export interface ChangePassword {
+  email: string,
+  currentPassword: string,
+  newPassword: string,
+}
+
+export interface PasswordReturnResponse {
+  statusCode: number
+  isSuccess: boolean
+  response: string
+  message: string
+}
+
+
