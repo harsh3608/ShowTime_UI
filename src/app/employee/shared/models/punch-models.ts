@@ -55,7 +55,17 @@ export interface PunchedInTimeResponse {
     totalSeconds: number
   }
 
-
+  export interface WorkingTimeResponse {
+    statusCode: number
+    isSuccess: boolean
+    response: WorkingTime[]
+    message: string
+  }
+  
+  export interface WorkingTime {
+    date: string
+    workingTime: TimeSpan
+  }
 
 
 
