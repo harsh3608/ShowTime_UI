@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Punch, PunchAddResponse, PunchedInTimeResponse, PunchedUsersResponse, UserStatusResponse } from '../models/punch-models';
+import { Punch, PunchAddResponse, PunchedInTimeResponse, PunchedUsersResponse, UserStatusResponse, WorkingTimeResponse } from '../models/punch-models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -32,6 +32,10 @@ export class PunchService {
 
   CalculateTotalPunchedInTime(userId: any): Observable<PunchedInTimeResponse> {
     return this.http.get<PunchedInTimeResponse> (this.punchBaseServerLink + 'CalculateTotalPunchedInTime/'+userId, { headers: this.headers })
+  }
+
+  GetFiveDaysWorkingTime(userId: any): Observable<WorkingTimeResponse> {
+    return this.http.get<WorkingTimeResponse> (this.punchBaseServerLink + 'GetFiveDaysWorkingTime/'+userId, { headers: this.headers })
   }
 
 }

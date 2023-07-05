@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PunchService } from '../shared/services/punch.service';
 import { AuthService } from '../shared/authorization/auth.service';
-import { Punch, TimeSpan } from '../shared/models/punch-models';
+import { Punch, TimeSpan, WorkingTime } from '../shared/models/punch-models';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { ChartOptions, ChartDataset } from 'chart.js';
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-employee-dashboard',
@@ -18,6 +20,16 @@ export class EmployeeDashboardComponent implements OnInit {
   punchesForToday: Punch[] = [];
   punchedinTime!: TimeSpan;
   formattedPunchedinTime!: string;
+  workingTimes: WorkingTime[] = [];
+
+  barChartOptions: ChartOptions = {
+    responsive: true,
+    scales: { y: { beginAtZero: true } },
+  };
+  barChartLabels: string[] = []
+  barChartData: ChartDataset[] = [
+    { data: [], label: 'Time Span' },
+  ];
 
 
   constructor(
@@ -27,19 +39,64 @@ export class EmployeeDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    Chart.register({});
     this.userId = this.authService.getUserId();
     this.userName = this.authService.getPersonName();
     this.CallCommonFunctions();
+    
+
   }
+
+  ngAfterViewInit() {
+    const canvas: HTMLCanvasElement = document.getElementById(
+      'barChart'
+    ) as HTMLCanvasElement;
+    const context = canvas.getContext('2d');
+    
+    if (context) {
+      new Chart(context, {
+        type: 'bar',
+        data: {
+          labels: this.barChartLabels,
+          datasets: this.barChartData,
+        },
+        options: this.barChartOptions,
+      });
+    }
+  }
+
 
   CallCommonFunctions() {
     this.GetPunchedInTime();
-    this.getUserStatus();
+    this.GetUserStatus();
     this.GetAllPunchedUsers();
     this.GetAllPunchesForToday();
+    this.GetFiveDaysWorkingTime();
   }
 
-  getUserStatus() {
+
+  GetFiveDaysWorkingTime() {
+    this.punchService.GetFiveDaysWorkingTime(this.userId).subscribe(
+      (res) => {
+        if(res.isSuccess) {
+          this.workingTimes = res.response;
+
+          
+          res.response.forEach(element => {
+            const hrs = moment.duration(element.workingTime).hours();
+            
+            this.barChartLabels.push(element.date);
+            this.barChartData[0].data.push(element.workingTime.hours);
+            
+            console.log(element.workingTime);
+            console.log(hrs)
+          });
+        }
+      }
+    );
+  }
+
+  GetUserStatus() {
     this.punchService.GetUserLatestPunchStatus(this.userId).subscribe(
       (res) => {
         if(res.isSuccess){

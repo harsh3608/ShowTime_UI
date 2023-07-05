@@ -18,13 +18,23 @@
                 </span>
                 &nbsp;
                 <h3>Working Hours: {{formattedPunchedinTime}}</h3>
-                
+
             </div>
 
 
             <button *ngIf="isPunchedIn" class="btn btn-warning" (click)="AddPunch(false)">Punch Out</button>
             <button *ngIf="!isPunchedIn" class="btn btn-primary" (click)="AddPunch(true)">Punch In</button>
         </div>
+    </div>
+
+    <div class="container border mt-4 mb-4" style="height:400px; width: 500px;">
+        <div>
+            <canvas id="barChart" width="250" height="200"></canvas>
+        </div>
+
+        <!-- <div class="chart-container">
+            <canvas id="MyChart">{{ chart }}</canvas>
+        </div> -->
     </div>
 
     <div class="row" style="width: 90%; margin-left: 5%;">
