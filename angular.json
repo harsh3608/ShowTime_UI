@@ -32,7 +32,7 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["crypto-js"]
+            "allowedCommonJsDependencies": ["crypto-js", "moment`~"]
           },
           "configurations": {
             "production": {
