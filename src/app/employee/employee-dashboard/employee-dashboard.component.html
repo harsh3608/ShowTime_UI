@@ -40,7 +40,7 @@
 
                             <h3>{{punch.punchDateTime | date: 'dd-MMM-yyyy h:mm a'}}</h3>
 
-                            <span class="badge rounded-pill bg-success "
+                            <span class="badge bg-success "
                                 style="height: max-content;scale: 1.6; margin-right: 4%;">Punched In</span>
                         </div>
 
@@ -63,9 +63,9 @@
                             <h3>{{punchDetail.punchDateTime | date: 'dd-MMM-yyyy h:mm a'}}</h3>
 
 
-                            <span *ngIf="punchDetail.punchStatus" class="badge rounded-pill bg-success "
+                            <span *ngIf="punchDetail.punchStatus" class="badge  bg-success "
                                 style="height: max-content;scale: 1.6; margin-right: 4%;">Punched In</span>
-                            <span *ngIf="!punchDetail.punchStatus" class="badge rounded-pill bg-danger "
+                            <span *ngIf="!punchDetail.punchStatus" class="badge  bg-danger "
                                 style="height: max-content;scale: 1.6; margin-right: 4%;">Punched Out</span>
                         </div>
 
