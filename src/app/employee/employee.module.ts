@@ -15,12 +15,14 @@ import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashbo
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     EmployeeMenuComponent,
-    EmployeeDashboardComponent
+    EmployeeDashboardComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
