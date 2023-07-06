@@ -53,7 +53,8 @@ export class EmployeeDashboardComponent implements OnInit {
     this.userId = this.authService.getUserId();
     this.userName = this.authService.getPersonName();
     this.CallCommonFunctions();
-    
+
+
   }
 
   ngAfterViewInit() {
@@ -73,13 +74,8 @@ export class EmployeeDashboardComponent implements OnInit {
       });
     }
 
-    //$('[data-toggle="tooltip"]').tooltip();
+    
 
-    // const elements = this.elementRef.nativeElement.querySelectorAll('[data-toggle="tooltip"]');
-    // Array.from(elements).forEach((element: HTMLElement) => {
-    //   (<any>$)(element).tooltip();
-    // }
-    // )
   }
 
 
