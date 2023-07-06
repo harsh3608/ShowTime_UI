@@ -64,7 +64,7 @@ export interface PunchedInTimeResponse {
   
   export interface WorkingTime {
     date: string
-    workingTime: TimeSpan
+    workingTime: number
   }
 
 

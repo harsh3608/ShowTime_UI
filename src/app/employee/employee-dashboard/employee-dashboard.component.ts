@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { ChartOptions, ChartDataset } from 'chart.js';
 import Chart from 'chart.js/auto';
+import * as $ from 'jquery';
+import 'bootstrap';
 
 @Component({
   selector: 'app-employee-dashboard',
@@ -22,14 +24,22 @@ export class EmployeeDashboardComponent implements OnInit {
   formattedPunchedinTime!: string;
   workingTimes: WorkingTime[] = [];
 
+
+  wt1: number = 0;
+  wt2: number = 0;
+  wt3: number = 0;
+  wt4: number = 0;
+  wt5: number = 0;
+
   barChartOptions: ChartOptions = {
     responsive: true,
     scales: { y: { beginAtZero: true } },
   };
   barChartLabels: string[] = []
   barChartData: ChartDataset[] = [
-    { data: [], label: 'Time Span' },
+    { data: [], label: 'Working Hours' },
   ];
+  elementRef: any;
 
 
   constructor(
@@ -44,7 +54,6 @@ export class EmployeeDashboardComponent implements OnInit {
     this.userName = this.authService.getPersonName();
     this.CallCommonFunctions();
     
-
   }
 
   ngAfterViewInit() {
@@ -63,6 +72,14 @@ export class EmployeeDashboardComponent implements OnInit {
         options: this.barChartOptions,
       });
     }
+
+    //$('[data-toggle="tooltip"]').tooltip();
+
+    // const elements = this.elementRef.nativeElement.querySelectorAll('[data-toggle="tooltip"]');
+    // Array.from(elements).forEach((element: HTMLElement) => {
+    //   (<any>$)(element).tooltip();
+    // }
+    // )
   }
 
 
@@ -81,15 +98,23 @@ export class EmployeeDashboardComponent implements OnInit {
         if(res.isSuccess) {
           this.workingTimes = res.response;
 
+          this.wt1 = Number(res.response[0].workingTime.toFixed(2)); 
+          this.wt2 = Number(res.response[1].workingTime.toFixed(2)); 
+          this.wt3 = Number(res.response[2].workingTime.toFixed(2)); 
+          //this.wt4 = moment.duration(res.response[3].workingTime).hours(); 
+          //this.wt5 = moment.duration(res.response[4].workingTime).hours();
+
+          //console.log(this.wt1, this.wt2, this.wt3, this.wt4, this.wt5);
+          //this.barChartData[0].data.push(Number(res.response[0].workingTime.toFixed(2)),Number(res.response[1].workingTime.toFixed(2)),Number(res.response[2].workingTime.toFixed(2)))
+
+          this.barChartData[0].data.push(this.wt1, this.wt2, this.wt3)
+
+
+
+          console.log(res.response);
           
           res.response.forEach(element => {
-            const hrs = moment.duration(element.workingTime).hours();
-            
-            this.barChartLabels.push(element.date);
-            this.barChartData[0].data.push(element.workingTime.hours);
-            
-            console.log(element.workingTime);
-            console.log(hrs)
+            this.barChartLabels.push(element.date.split('T')[0]);
           });
         }
       }
