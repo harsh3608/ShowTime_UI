@@ -97,7 +97,7 @@ export class EmployeeDashboardComponent implements OnInit {
           this.wt1 = Number(res.response[0].workingTime.toFixed(2)); 
           this.wt2 = Number(res.response[1].workingTime.toFixed(2)); 
           this.wt3 = Number(res.response[2].workingTime.toFixed(2)); 
-          //this.wt4 = moment.duration(res.response[3].workingTime).hours(); 
+          this.wt4 = Number(res.response[3].workingTime.toFixed(2)); 
           //this.wt5 = moment.duration(res.response[4].workingTime).hours();
 
           //console.log(this.wt1, this.wt2, this.wt3, this.wt4, this.wt5);
