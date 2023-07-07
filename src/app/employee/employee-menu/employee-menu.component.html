@@ -15,6 +15,12 @@
 
         &nbsp;
 
+        <button mat-button class="mt-3" routerLink="/employee/calendar">
+            <span class="material-icons">
+                calendar_month
+            </span>
+        </button>
+
         <button mat-button [matMenuTriggerFor]="menu" class="mt-3">
             <span class="material-icons">
                 account_circle
@@ -61,6 +67,3 @@
         <button class="btn btn-danger" [mat-dialog-close]="true" (click)="LogOut()">Logout</button>
     </mat-dialog-actions>
 </ng-template>
-
-
-

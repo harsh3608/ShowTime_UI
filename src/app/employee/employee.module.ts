@@ -17,13 +17,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { Chart } from 'chart.js';
+import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     EmployeeMenuComponent,
     EmployeeDashboardComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    WorkCalendarComponent
   ],
   imports: [
     CommonModule,
