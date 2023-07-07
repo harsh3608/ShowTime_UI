@@ -103,7 +103,7 @@ export class EmployeeDashboardComponent implements OnInit {
           //console.log(this.wt1, this.wt2, this.wt3, this.wt4, this.wt5);
           //this.barChartData[0].data.push(Number(res.response[0].workingTime.toFixed(2)),Number(res.response[1].workingTime.toFixed(2)),Number(res.response[2].workingTime.toFixed(2)))
 
-          this.barChartData[0].data.push(this.wt1, this.wt2, this.wt3)
+          this.barChartData[0].data.push(this.wt1, this.wt2, this.wt3, this.wt4)
 
 
 
