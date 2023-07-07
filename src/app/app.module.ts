@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthConfigInterceptor } from './employee/shared/authorization/interceptor/auth-config.interceptor';
 import { DatePipe } from '@angular/common';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DatePipe } from '@angular/common';
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,
     }),
+    FullCalendarModule
     
   ],
   providers: [
