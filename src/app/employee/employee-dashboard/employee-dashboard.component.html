@@ -12,7 +12,7 @@
                 <h1 *ngIf="!isPunchedIn" disabled class="text-warning">Punched Out</h1>
             </div>
 
-            <div class="d-flex flex-row mt-2"  data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
+            <div class="d-flex flex-row mt-2">
                 <span class="material-icons">
                     timer
                 </span>
@@ -31,15 +31,11 @@
         <div>
             <canvas id="barChart" width="250" height="200"></canvas>
         </div>
-
-        <!-- <div class="chart-container">
-            <canvas id="MyChart">{{ chart }}</canvas>
-        </div> -->
     </div>
 
-    <div class="row" style="width: 90%; margin-left: 5%;">
+    <div class="row mb-4" style="width: 90%; margin-left: 5%;">
         <div class="col">
-            <div class="container border">
+            <div class="container border p-2">
                 <h1 class="p-3"> Currently Punched In Members</h1>
 
                 <div style="height: 400px; overflow-y: scroll;">
@@ -59,8 +55,8 @@
             </div>
         </div>
 
-        <div class="col">
-            <div class="container border">
+        <div class="col mb-5">
+            <div class="container border p-2">
                 <h1 class="p-3"> Your Punches For Today !</h1>
 
                 <div style="height: 400px; overflow-y: scroll;">

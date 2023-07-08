@@ -53,7 +53,8 @@ export class EmployeeDashboardComponent implements OnInit {
     this.userId = this.authService.getUserId();
     this.userName = this.authService.getPersonName();
     this.CallCommonFunctions();
-    
+
+
   }
 
   ngAfterViewInit() {
@@ -73,13 +74,8 @@ export class EmployeeDashboardComponent implements OnInit {
       });
     }
 
-    //$('[data-toggle="tooltip"]').tooltip();
+    
 
-    // const elements = this.elementRef.nativeElement.querySelectorAll('[data-toggle="tooltip"]');
-    // Array.from(elements).forEach((element: HTMLElement) => {
-    //   (<any>$)(element).tooltip();
-    // }
-    // )
   }
 
 
@@ -101,13 +97,13 @@ export class EmployeeDashboardComponent implements OnInit {
           this.wt1 = Number(res.response[0].workingTime.toFixed(2)); 
           this.wt2 = Number(res.response[1].workingTime.toFixed(2)); 
           this.wt3 = Number(res.response[2].workingTime.toFixed(2)); 
-          //this.wt4 = moment.duration(res.response[3].workingTime).hours(); 
+          this.wt4 = Number(res.response[3].workingTime.toFixed(2)); 
           //this.wt5 = moment.duration(res.response[4].workingTime).hours();
 
           //console.log(this.wt1, this.wt2, this.wt3, this.wt4, this.wt5);
           //this.barChartData[0].data.push(Number(res.response[0].workingTime.toFixed(2)),Number(res.response[1].workingTime.toFixed(2)),Number(res.response[2].workingTime.toFixed(2)))
 
-          this.barChartData[0].data.push(this.wt1, this.wt2, this.wt3)
+          this.barChartData[0].data.push(this.wt1, this.wt2, this.wt3, this.wt4)
 
 
 
