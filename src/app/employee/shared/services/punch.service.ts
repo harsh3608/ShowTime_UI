@@ -38,4 +38,8 @@ export class PunchService {
     return this.http.get<WorkingTimeResponse> (this.punchBaseServerLink + 'GetFiveDaysWorkingTime/'+userId, { headers: this.headers })
   }
 
+  GetAllDaysWorkingTime(userId: any): Observable<WorkingTimeResponse> {
+    return this.http.get<WorkingTimeResponse> (this.punchBaseServerLink + 'GetAllDaysWorkingTime/'+userId, { headers: this.headers })
+  }
+
 }
