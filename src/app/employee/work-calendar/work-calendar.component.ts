@@ -60,7 +60,7 @@ export class WorkCalendarComponent implements OnInit{
 
 
   GetWorkingHours(){
-    this.punchService.GetFiveDaysWorkingTime(this.userId).subscribe(
+    this.punchService.GetAllDaysWorkingTime(this.userId).subscribe(
       (res) => {
         if(res.isSuccess){
           this.workingTimes = res.response;
