@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Calendar, EventInput } from '@fullcalendar/core';
+import { Calendar, EventInput, CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { PunchService } from '../shared/services/punch.service';
 import { AuthService } from '../shared/authorization/auth.service';
@@ -13,6 +13,7 @@ import { WorkingTime } from '../shared/models/punch-models';
 export class WorkCalendarComponent implements OnInit{
   userId!:any;
   workingTimes: WorkingTime[] = [];
+  customEvents: EventInput[] = [];
 
   events = this.workingTimes.map((workingHour) => {
     return {
@@ -30,50 +31,43 @@ export class WorkCalendarComponent implements OnInit{
   ngOnInit() {
     this.userId = this.authService.getUserId();
     this.GetWorkingHours();
-
     
-  }
+    setTimeout(() => {
+      this.CreateCustomEvents();
+    }, 1000);
 
-
-  ngAfterViewInit() {
-    const calendarEl: HTMLElement = this.elementRef.nativeElement.querySelector('#calendar')!;
+    setTimeout(() => {
+      const calendarEl: HTMLElement = this.elementRef.nativeElement.querySelector('#calendar')!;
     const calendar = new Calendar(calendarEl, {
       plugins: [dayGridPlugin],
       initialView: 'dayGridMonth',
-      events: this.prepareEvents(), // Pass the events array here
+      events: this.customEvents, // Pass the events array here
     });
     calendar.render();
+    }, 1500);
+    
   }
+
+  CreateCustomEvents() {
+    this.workingTimes.map(element => {
+      let event = { title: `${element.workingTime.toFixed(2)} hrs`, date: element.date.split('T')[0] }
+
+      this.customEvents.push(event);
+
+    });
+    console.log(this.customEvents);
+  }
+
 
   GetWorkingHours(){
     this.punchService.GetFiveDaysWorkingTime(this.userId).subscribe(
       (res) => {
         if(res.isSuccess){
           this.workingTimes = res.response;
-          console.log(this.workingTimes);
-
-          res.response.forEach(element => {
-            this.workingTimes.push(element);
-          });
         }
       }
-    )
+    );
+    
   }
-
-
-
-  
-
-  prepareEvents(): EventInput[] {
-    // Assuming workingHours is an array of working hours fetched from the API
-    const events: EventInput[] = this.workingTimes.map((workingHour) => {
-      return {
-        title: `Working Hours: ${workingHour.workingTime}`,
-        start: workingHour.date,
-      };
-    });
-    return events;
-  }
-
 
 }
