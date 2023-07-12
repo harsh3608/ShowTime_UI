@@ -10,7 +10,7 @@ const routes: Routes = [{
   canActivate: [EmployeeGuard]
 },
 {
-  path:'calendar',
+  path:'working-hours',
   component: WorkCalendarComponent,
   canActivate: [EmployeeGuard]
 }

@@ -19,6 +19,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { LeaveAddDialogComponent } from './leave-add-dialog/leave-add-dialog.component';
+import { LeaveManagerComponent } from './leave-manager/leave-manager.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LeaveAddDialogComponent } from './leave-add-dialog/leave-add-dialog.com
     EmployeeDashboardComponent,
     ChangePasswordComponent,
     WorkCalendarComponent,
-    LeaveAddDialogComponent
+    LeaveAddDialogComponent,
+    LeaveManagerComponent
   ],
   imports: [
     CommonModule,
