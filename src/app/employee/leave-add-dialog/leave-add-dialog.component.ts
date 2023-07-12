@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/authorization/auth.service';
@@ -20,7 +20,22 @@ export class LeaveAddDialogComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    
+    this.AddLeaveRequestForm = this.fb.group({
+      userId: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
+    startDate: new FormControl('', [Validators.required]),
+    endDate: new FormControl('', [Validators.required]),
+    reason: new FormControl('', [Validators.required]),
+    leaveType: new FormControl('', [Validators.required]),
+    isApproved: new FormControl('', [Validators.required]),
+    isRejected: new FormControl('', [Validators.required]),
+    isHalfDay: new FormControl('', [Validators.required]),
+    halfDayShift: new FormControl('', [Validators.required]),
+    });
+  }
+
+  SubmitForm() {
+
   }
 
 }

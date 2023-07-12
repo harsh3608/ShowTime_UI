@@ -1,1 +1,67 @@
-<p>leave-add-dialog works!</p>
+<div class="parent">
+
+    <div class="d-flex flex-row justify-content-between mt-0">
+        <div></div>
+
+        <div class="p-2 mt-2">
+            <h1>Add Leave Request</h1>
+        </div>
+
+        <div class="p-2" style="align-self: flex-end;">
+            <button mat-icon-button mat-dialog-close aria-label="Close">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+
+
+    <form [formGroup]="AddLeaveRequestForm" (ngSubmit)="SubmitForm()">
+        <div class="row">
+
+            <div class="row mt-4">
+                <div class="col mb-3 form-input">
+                    <div style="margin-bottom: 10px;">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="Email" formControlName="Email">
+                        <!-- <div style="font-size: small;" class="form-text text-danger"
+                            *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
+                            Email is Required !
+                        </div>
+                        <div style="font-size: small;" class="form-text text-danger"
+                            *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">
+                            Please enter valid Email !
+                        </div> -->
+                    </div>
+                </div>
+
+                <div class="col mb-3 form-input">
+                    <div style="margin-bottom: 10px;">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="Email" formControlName="Email">
+                        <!-- <div style="font-size: small;" class="form-text text-danger"
+                            *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
+                            Email is Required !
+                        </div>
+                        <div style="font-size: small;" class="form-text text-danger"
+                            *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">
+                            Please enter valid Email !
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="mt-3 mb-2">
+                <button type="submit" style="scale: 1.2;" mat-raised-button color="primary">Submit</button>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
