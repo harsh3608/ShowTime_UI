@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { LeaveAddDialogComponent } from './leave-add-dialog/leave-add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     EmployeeMenuComponent,
     EmployeeDashboardComponent,
     ChangePasswordComponent,
-    WorkCalendarComponent
+    WorkCalendarComponent,
+    LeaveAddDialogComponent
   ],
   imports: [
     CommonModule,
