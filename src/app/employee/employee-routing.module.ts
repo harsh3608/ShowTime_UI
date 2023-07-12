@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { EmployeeGuard } from './shared/authorization/guards/employee.guard';
 import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
+import { LeaveManagerComponent } from './leave-manager/leave-manager.component';
 
 const routes: Routes = [{
   path:'home',
@@ -12,6 +13,11 @@ const routes: Routes = [{
 {
   path:'working-hours',
   component: WorkCalendarComponent,
+  canActivate: [EmployeeGuard]
+},
+{
+  path:'leave-manager',
+  component: LeaveManagerComponent,
   canActivate: [EmployeeGuard]
 }
 ];
