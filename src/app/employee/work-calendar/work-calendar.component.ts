@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Calendar, EventInput, CalendarOptions } from '@fullcalendar/core';
+import { Calendar, EventInput } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { PunchService } from '../shared/services/punch.service';
 import { AuthService } from '../shared/authorization/auth.service';
 import { WorkingTime } from '../shared/models/punch-models';
+
 
 @Component({
   selector: 'app-work-calendar',
@@ -55,7 +56,7 @@ export class WorkCalendarComponent implements OnInit{
       this.customEvents.push(event);
 
     });
-    console.log(this.customEvents);
+    
   }
 
 
@@ -69,5 +70,11 @@ export class WorkCalendarComponent implements OnInit{
     );
     
   }
+
+
+
+  
+
+
 
 }
