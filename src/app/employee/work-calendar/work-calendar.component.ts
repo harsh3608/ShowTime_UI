@@ -15,6 +15,7 @@ export class WorkCalendarComponent implements OnInit{
   userId!:any;
   workingTimes: WorkingTime[] = [];
   customEvents: EventInput[] = [];
+  isLoading: boolean = true;
 
   events = this.workingTimes.map((workingHour) => {
     return {
@@ -35,6 +36,7 @@ export class WorkCalendarComponent implements OnInit{
     
     setTimeout(() => {
       this.CreateCustomEvents();
+      this.isLoading = false;
     }, 1000);
 
     setTimeout(() => {
