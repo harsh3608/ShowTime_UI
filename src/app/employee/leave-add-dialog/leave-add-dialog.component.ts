@@ -47,15 +47,16 @@ export class LeaveAddDialogComponent implements OnInit{
       leaveType: new FormControl('', [Validators.required]),
       isApproved: new FormControl(false, [Validators.required]),
       isRejected: new FormControl(false, [Validators.required]),
-      isHalfDay: new FormControl(false, [Validators.required]),
-      halfDayShift: new FormControl('', [Validators.required]),
+      isHalfDay: new FormControl({ value: false, disabled: true }),
+      halfDayShift: new FormControl(''),
       isPaid: new FormControl(false, [Validators.required])
     });
     
   }
 
   SubmitForm() {
-
+    debugger;
+    this.addLeaveRequestForm.value;
   }
 
 
@@ -64,21 +65,15 @@ export class LeaveAddDialogComponent implements OnInit{
     const endDate = this.addLeaveRequestForm.get('endDate')?.value;
 
     if(startDate == endDate){
-      this.disableHalfDay = false
+      this.disableHalfDay = false;
+      this.addLeaveRequestForm.controls['isHalfDay'].setValue(true);
+    }else{
+      this.disableHalfDay = true;
+      this.addLeaveRequestForm.controls['isHalfDay'].setValue(false);
+      this.addLeaveRequestForm.controls['halfDayShift'].setValue('');
     }
 
-    // if (startDate instanceof Date && endDate instanceof Date) {
-    //   const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
-    //   const diffInDays = Math.round(Math.abs((startDate.getTime() - endDate.getTime()) / oneDay));
-
-    //   if (diffInDays === 1) {
-        
-    //   } else {
-        
-    //   }
-    // }
-    console.log(startDate);
-    console.log(endDate); 
+    
   }
 
 
