@@ -1,0 +1,22 @@
+.parent {
+  width: 700px;
+  height: 600px;
+  overflow: hidden;
+  background-color: rgb(252, 243, 243);
+  display: flex;
+  flex-direction: column;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;
+}
+
+.form-input {
+  width: 140px;
+}
