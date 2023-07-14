@@ -36,10 +36,9 @@
                 </div>
 
                 <div class="col mb-3 form-input">
-                    <div style="margin-bottom: 10px;">
-                        <label for="isHalfDay" class="form-label">is Half Day</label>
-                        <input type="text" class="form-control" id="isHalfDay" formControlName="isHalfDay">
-
+                    <div>
+                        <label for="isPaid" class="form-label">Is paid leave?</label>
+                        <mat-slide-toggle class="form-control" id="isPaid" formControlName="isPaid"></mat-slide-toggle>
                     </div>
                 </div>
             </div>
@@ -47,15 +46,46 @@
             <div class="row mt-4">
                 <div class="col mb-3 form-input">
                     <div>
-
+                        <label for="startDate" class="form-label">From</label>
+                        <input type="date" class="form-control" id="startDate" formControlName="startDate"
+                            [min]="currentDate.toISOString().substring(0, 10)">
                     </div>
                 </div>
 
                 <div class="col mb-3 form-input">
-                    <div></div>
+                    <div>
+                        <label for="endDate" class="form-label">To</label>
+                        <input type="date" class="form-control" id="endDate" formControlName="endDate"
+                            [min]="currentDate.toISOString().substring(0, 10)">
+                    </div>
                 </div>
             </div>
 
+
+            <div class="row mt-4">
+                <div class="col mb-3 form-input">
+                    <div>
+                        <label for="reason" class="form-label">Reason for leave</label>
+                        <textarea class="form-control" id="reason" formControlName="reason"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col mb-3 form-input">
+
+                </div>
+
+                <div class="col mb-3 form-input">
+                    <label for="leaveType" class="form-label">Leave Type</label>
+                    <select class="form-control" id="leaveType" formControlName="leaveType">
+                        <option value="">Please select leave type</option>
+                        <option *ngFor="let type of leaveTypeOptions; let i = index" value="i">
+                            {{type}}
+                        </option>
+                    </select>
+                </div>
+            </div>
 
 
 

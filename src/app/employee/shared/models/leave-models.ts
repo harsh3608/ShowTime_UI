@@ -24,6 +24,7 @@ export interface LeaveDTO {
     isRejected: boolean
     isHalfDay: boolean
     halfDayShift: number
+    isPaid: boolean
 }
 
 export interface LeaveAddRequest {
@@ -37,5 +38,6 @@ export interface LeaveAddRequest {
     isRejected: boolean
     isHalfDay: boolean
     halfDayShift: number
+    isPaid: boolean
 }
 

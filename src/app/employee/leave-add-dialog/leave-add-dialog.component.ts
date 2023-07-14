@@ -13,14 +13,12 @@ import { HalfDayShiftOptions, LeaveTypeOptions } from '../shared/enums/leave-enu
 export class LeaveAddDialogComponent implements OnInit{
   addLeaveRequestForm!: FormGroup;
   halfDayShiftoptions: string[] = [] ;
-  leaveTypeOptions: string[] = [ 
-    LeaveTypeOptions[0], 
-    LeaveTypeOptions[1],
-    LeaveTypeOptions[2],
-    LeaveTypeOptions[3],
-    LeaveTypeOptions[4]
-  ] ;
+  leaveTypeOptions: string[] = [] ;
+  currentDate = new Date();
 
+
+
+  
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -36,6 +34,9 @@ export class LeaveAddDialogComponent implements OnInit{
     .filter(key => isNaN(Number(key))) // Exclude numeric keys, if any
     .map(key => HalfDayShiftOptions[key as keyof typeof HalfDayShiftOptions]);
     
+    this.leaveTypeOptions = Object.keys(LeaveTypeOptions)
+    .filter(key => isNaN(Number(key))) // Exclude numeric keys, if any
+    .map(key => LeaveTypeOptions[key as keyof typeof LeaveTypeOptions]);
 
     this.addLeaveRequestForm = this.fb.group({
       userId: new FormControl(this.authService.getUserId(), [Validators.required]),
@@ -48,9 +49,9 @@ export class LeaveAddDialogComponent implements OnInit{
       isRejected: new FormControl(false, [Validators.required]),
       isHalfDay: new FormControl(false, [Validators.required]),
       halfDayShift: new FormControl('', [Validators.required]),
+      isPaid: new FormControl(false, [Validators.required])
     });
-    console.log(this.halfDayShiftoptions);
-    console.log(this.leaveTypeOptions);
+    
   }
 
   SubmitForm() {

@@ -20,7 +20,8 @@ import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { LeaveAddDialogComponent } from './leave-add-dialog/leave-add-dialog.component';
 import { LeaveManagerComponent } from './leave-manager/leave-manager.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     MatDialogModule,
     MatMenuModule,
     FullCalendarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSlideToggleModule
   ]
 })
 export class EmployeeModule { }
