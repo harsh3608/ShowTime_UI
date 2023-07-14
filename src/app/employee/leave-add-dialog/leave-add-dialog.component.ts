@@ -39,14 +39,14 @@ export class LeaveAddDialogComponent implements OnInit{
     .map(key => LeaveTypeOptions[key as keyof typeof LeaveTypeOptions]);
 
     this.addLeaveRequestForm = this.fb.group({
-      userId: new FormControl(this.authService.getUserId(), [Validators.required]),
+      userId: new FormControl(this.authService.getUserId() ),
       username: new FormControl(this.authService.getPersonName(), [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
       reason: new FormControl('', [Validators.required]),
       leaveType: new FormControl('', [Validators.required]),
-      isApproved: new FormControl(false, [Validators.required]),
-      isRejected: new FormControl(false, [Validators.required]),
+      isApproved: new FormControl(false, ),
+      isRejected: new FormControl(false, ),
       isHalfDay: new FormControl({ value: false, disabled: true }),
       halfDayShift: new FormControl(''),
       isPaid: new FormControl(false, [Validators.required])
@@ -56,7 +56,7 @@ export class LeaveAddDialogComponent implements OnInit{
 
   SubmitForm() {
     debugger;
-    this.addLeaveRequestForm.value;
+    console.log(this.addLeaveRequestForm.value);
   }
 
 

@@ -102,8 +102,6 @@ export class EmployeeDashboardComponent implements OnInit {
           
           this.barChartData[0].data.push(this.wt1, this.wt2, this.wt3, this.wt4, this.wt5);
 
-          console.log(res.response);
-          
           res.response.forEach(element => {
             this.barChartLabels.push(element.date.split('T')[0]);
           });
