@@ -15,10 +15,10 @@ export class LeaveAddDialogComponent implements OnInit{
   halfDayShiftoptions: string[] = [] ;
   leaveTypeOptions: string[] = [] ;
   currentDate = new Date();
+  disableHalfDay: boolean = true;
 
 
 
-  
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -57,5 +57,54 @@ export class LeaveAddDialogComponent implements OnInit{
   SubmitForm() {
 
   }
+
+
+  onDateChange() {
+    const startDate = this.addLeaveRequestForm.get('startDate')?.value;
+    const endDate = this.addLeaveRequestForm.get('endDate')?.value;
+
+    if(startDate == endDate){
+      this.disableHalfDay = false
+    }
+
+    // if (startDate instanceof Date && endDate instanceof Date) {
+    //   const oneDay = 24 * 60 * 60 * 1000; // One day in milliseconds
+    //   const diffInDays = Math.round(Math.abs((startDate.getTime() - endDate.getTime()) / oneDay));
+
+    //   if (diffInDays === 1) {
+        
+    //   } else {
+        
+    //   }
+    // }
+    console.log(startDate);
+    console.log(endDate); 
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  get isHalfDay(): FormControl {
+    return this.addLeaveRequestForm.get("isHalfDay") as FormControl;
+  }
+  get startDate(): FormControl {
+    return this.addLeaveRequestForm.get("startDate") as FormControl;
+  }
+
+  get endDate(): FormControl {
+    return this.addLeaveRequestForm.get("endDate") as FormControl;
+  }
+
 
 }

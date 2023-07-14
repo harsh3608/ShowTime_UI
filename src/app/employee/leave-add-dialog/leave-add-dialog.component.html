@@ -48,7 +48,7 @@
                     <div>
                         <label for="startDate" class="form-label">From</label>
                         <input type="date" class="form-control" id="startDate" formControlName="startDate"
-                            [min]="currentDate.toISOString().substring(0, 10)">
+                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()">
                     </div>
                 </div>
 
@@ -56,24 +56,35 @@
                     <div>
                         <label for="endDate" class="form-label">To</label>
                         <input type="date" class="form-control" id="endDate" formControlName="endDate"
-                            [min]="currentDate.toISOString().substring(0, 10)">
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row mt-4">
-                <div class="col mb-3 form-input">
-                    <div>
-                        <label for="reason" class="form-label">Reason for leave</label>
-                        <textarea class="form-control" id="reason" formControlName="reason"></textarea>
+                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()">
                     </div>
                 </div>
             </div>
 
             <div class="row mt-4">
                 <div class="col mb-3 form-input">
-
+                    <div class="row">
+                        <div class="d-flex flex-row" *ngIf="!disableHalfDay">
+                            <div class="col-4" style="padding-left: 5px;" >
+                                <div>
+                                    <label for="isHalfDay" class="form-label">Is Half Day?</label>
+                                    <mat-slide-toggle class="form-control" id="isHalfDay"
+                                        formControlName="isHalfDay" ></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div>
+                                    <label for="halfDayShift" class="form-label">Leave Type</label>
+                                    <select class="form-control" id="halfDayShift" formControlName="halfDayShift" >
+                                        <option value="">Select half day shift</option>
+                                        <option *ngFor="let type of halfDayShiftoptions; let i = index" value="i">
+                                            {{type}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col mb-3 form-input">
@@ -86,6 +97,16 @@
                     </select>
                 </div>
             </div>
+
+            <div class="row mt-4">
+                <div class="col mb-3 form-input">
+                    <div>
+                        <label for="reason" class="form-label">Reason for leave</label>
+                        <textarea class="form-control" id="reason" formControlName="reason"></textarea>
+                    </div>
+                </div>
+            </div>
+
 
 
 
