@@ -47,7 +47,7 @@ export class LeaveAddDialogComponent implements OnInit{
       leaveType: new FormControl('', [Validators.required]),
       isApproved: new FormControl(false, ),
       isRejected: new FormControl(false, ),
-      isHalfDay: new FormControl({ value: false, disabled: true }),
+      isHalfDay: new FormControl(false, ),
       halfDayShift: new FormControl(''),
       isPaid: new FormControl(false, [Validators.required])
     });
@@ -55,7 +55,7 @@ export class LeaveAddDialogComponent implements OnInit{
   }
 
   SubmitForm() {
-    debugger;
+    //debugger;
     console.log(this.addLeaveRequestForm.value);
   }
 
@@ -89,10 +89,6 @@ export class LeaveAddDialogComponent implements OnInit{
 
 
 
-
-  get isHalfDay(): FormControl {
-    return this.addLeaveRequestForm.get("isHalfDay") as FormControl;
-  }
   get startDate(): FormControl {
     return this.addLeaveRequestForm.get("startDate") as FormControl;
   }
@@ -101,5 +97,11 @@ export class LeaveAddDialogComponent implements OnInit{
     return this.addLeaveRequestForm.get("endDate") as FormControl;
   }
 
+  get leaveType(): FormControl {
+    return this.addLeaveRequestForm.get("leaveType") as FormControl;
+  }
 
+  get reason(): FormControl {
+    return this.addLeaveRequestForm.get("reason") as FormControl;
+  }
 }

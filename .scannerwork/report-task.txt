@@ -1,0 +1,6 @@
+projectKey=ShowTimeUI-89
+serverUrl=http://localhost:9000
+serverVersion=10.1.0.73491
+dashboardUrl=http://localhost:9000/dashboard?id=ShowTimeUI-89
+ceTaskId=AYltomB4NS_a53c869G1
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYltomB4NS_a53c869G1
