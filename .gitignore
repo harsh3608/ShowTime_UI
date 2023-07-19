@@ -40,3 +40,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# ScannerWork
+/.scannerwork
+.scannerwork/.sonartmp/9676071202890713209/sonar-go-to-slang-windows-amd64.exe

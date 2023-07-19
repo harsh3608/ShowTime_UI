@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { AuthService } from '../shared/authorization/auth.service';
 import { HalfDayShiftOptions, LeaveTypeOptions } from '../shared/enums/leave-enums';
+import { LeaveAddRequest } from '../shared/models/leave-models';
+import { LeaveService } from '../shared/services/leave.service';
 
 @Component({
   selector: 'app-leave-add-dialog',
@@ -17,13 +17,13 @@ export class LeaveAddDialogComponent implements OnInit{
   currentDate = new Date();
   disableHalfDay: boolean = true;
   isLoading: boolean = false;
+  leaveRequest!: LeaveAddRequest;
 
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private leaveService: LeaveService
   ){}
 
   ngOnInit(): void {
@@ -59,7 +59,18 @@ export class LeaveAddDialogComponent implements OnInit{
     this.isLoading = true;
     setTimeout(() => {
       this.addLeaveRequestForm.markAllAsTouched();
-    console.log(this.addLeaveRequestForm.value);
+      //console.log(this.addLeaveRequestForm.value);
+      this.leaveRequest = this.addLeaveRequestForm.value;
+      this.leaveService.AddLeaveRequest(this.leaveRequest).subscribe(
+        (res) => {
+          if(res.isSuccess){
+
+          }else{
+            
+          }
+        }
+      )
+
     }, 2000);
     
   }
