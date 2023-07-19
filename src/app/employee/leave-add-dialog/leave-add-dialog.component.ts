@@ -56,6 +56,7 @@ export class LeaveAddDialogComponent implements OnInit{
 
   SubmitForm() {
     //debugger;
+    this.addLeaveRequestForm.markAllAsTouched();
     console.log(this.addLeaveRequestForm.value);
   }
 
