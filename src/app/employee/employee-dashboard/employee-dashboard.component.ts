@@ -58,23 +58,21 @@ export class EmployeeDashboardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    const canvas: HTMLCanvasElement = document.getElementById(
-      'barChart'
-    ) as HTMLCanvasElement;
-    const context = canvas.getContext('2d');
+    // const canvas: HTMLCanvasElement = document.getElementById(
+    //   'barChart'
+    // ) as HTMLCanvasElement;
+    // const context = canvas.getContext('2d');
     
-    if (context) {
-      new Chart(context, {
-        type: 'bar',
-        data: {
-          labels: this.barChartLabels,
-          datasets: this.barChartData,
-        },
-        options: this.barChartOptions,
-      });
-    }
-
-    
+    // if (context) {
+    //   new Chart(context, {
+    //     type: 'bar',
+    //     data: {
+    //       labels: this.barChartLabels,
+    //       datasets: this.barChartData,
+    //     },
+    //     options: this.barChartOptions,
+    //   });
+    // }
 
   }
 

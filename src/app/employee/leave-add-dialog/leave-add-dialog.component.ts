@@ -16,7 +16,7 @@ export class LeaveAddDialogComponent implements OnInit{
   leaveTypeOptions: string[] = [] ;
   currentDate = new Date();
   disableHalfDay: boolean = true;
-
+  isLoading: boolean = false;
 
 
   constructor(
@@ -56,8 +56,12 @@ export class LeaveAddDialogComponent implements OnInit{
 
   SubmitForm() {
     //debugger;
-    this.addLeaveRequestForm.markAllAsTouched();
+    this.isLoading = true;
+    setTimeout(() => {
+      this.addLeaveRequestForm.markAllAsTouched();
     console.log(this.addLeaveRequestForm.value);
+    }, 2000);
+    
   }
 
 
