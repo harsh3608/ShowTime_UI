@@ -70,4 +70,21 @@ export class AuthService {
     }
     return false
   }
+
+  storeManagerId(id: any) {
+    localStorage.setItem('m-id',id);
+  }
+
+  storeManagerName(name: string) {
+    localStorage.setItem('m-name',name);
+  }
+
+  getManagerId() {
+    return localStorage.getItem('m-id');
+  }
+
+  getManagerName() {
+    return localStorage.getItem('m-name') || '';
+  }
+
 }

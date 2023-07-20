@@ -58,23 +58,21 @@ export class EmployeeDashboardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    const canvas: HTMLCanvasElement = document.getElementById(
-      'barChart'
-    ) as HTMLCanvasElement;
-    const context = canvas.getContext('2d');
+    // const canvas: HTMLCanvasElement = document.getElementById(
+    //   'barChart'
+    // ) as HTMLCanvasElement;
+    // const context = canvas.getContext('2d');
     
-    if (context) {
-      new Chart(context, {
-        type: 'bar',
-        data: {
-          labels: this.barChartLabels,
-          datasets: this.barChartData,
-        },
-        options: this.barChartOptions,
-      });
-    }
-
-    
+    // if (context) {
+    //   new Chart(context, {
+    //     type: 'bar',
+    //     data: {
+    //       labels: this.barChartLabels,
+    //       datasets: this.barChartData,
+    //     },
+    //     options: this.barChartOptions,
+    //   });
+    // }
 
   }
 
@@ -102,8 +100,6 @@ export class EmployeeDashboardComponent implements OnInit {
           
           this.barChartData[0].data.push(this.wt1, this.wt2, this.wt3, this.wt4, this.wt5);
 
-          console.log(res.response);
-          
           res.response.forEach(element => {
             this.barChartLabels.push(element.date.split('T')[0]);
           });

@@ -22,6 +22,9 @@ import { LeaveAddDialogComponent } from './leave-add-dialog/leave-add-dialog.com
 import { LeaveManagerComponent } from './leave-manager/leave-manager.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatMenuModule,
     FullCalendarModule,
     MatProgressSpinnerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    TableModule,
+    PaginatorModule
+
   ]
 })
 export class EmployeeModule { }

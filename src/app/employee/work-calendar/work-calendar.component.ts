@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Calendar, EventInput } from '@fullcalendar/core';
+import { Calendar, EventInput } from '@fullcalendar/core'; 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { PunchService } from '../shared/services/punch.service';
 import { AuthService } from '../shared/authorization/auth.service';
@@ -52,7 +52,7 @@ export class WorkCalendarComponent implements OnInit{
   }
 
   CreateCustomEvents() {
-    this.workingTimes.map(element => {
+    this.workingTimes.forEach(element => {
       let event = { title: `${element.workingTime.toFixed(2)} hrs`, date: element.date.split('T')[0] }
 
       this.customEvents.push(event);

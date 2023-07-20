@@ -50,6 +50,10 @@
                         <input type="date" class="form-control" id="startDate" formControlName="startDate"
                             [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()">
                     </div>
+                    <div style="font-size: small;" class="form-text text-danger"
+                        *ngIf="startDate.errors?.['required'] && (startDate.touched || startDate.dirty)">
+                        Leave start date is Required !
+                    </div>
                 </div>
 
                 <div class="col mb-3 form-input">
@@ -58,6 +62,10 @@
                         <input type="date" class="form-control" id="endDate" formControlName="endDate"
                             [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()">
                     </div>
+                    <div style="font-size: small;" class="form-text text-danger"
+                        *ngIf="endDate.errors?.['required'] && (endDate.touched || endDate.dirty)">
+                        Leave End date is Required !
+                    </div>
                 </div>
             </div>
 
@@ -65,19 +73,19 @@
                 <div class="col mb-3 form-input">
                     <div class="row">
                         <div class="d-flex flex-row" *ngIf="!disableHalfDay">
-                            <div class="col-4" style="padding-left: 5px;" >
+                            <div class="col-4" style="padding-left: 5px;">
                                 <div>
                                     <label for="isHalfDay" class="form-label">Is Half Day?</label>
-                                    <mat-slide-toggle class="form-control" id="isHalfDay"
-                                        formControlName="isHalfDay" ></mat-slide-toggle>
+                                    <mat-checkbox class="example-margin" [disabled]="true"
+                                        checked="true"></mat-checkbox>
                                 </div>
                             </div>
                             <div class="col">
                                 <div>
                                     <label for="halfDayShift" class="form-label">Leave Type</label>
-                                    <select class="form-control" id="halfDayShift" formControlName="halfDayShift" >
+                                    <select class="form-control" id="halfDayShift" formControlName="halfDayShift">
                                         <option value="">Select half day shift</option>
-                                        <option *ngFor="let type of halfDayShiftoptions; let i = index" value="{{i}}">
+                                        <option *ngFor="let type of halfDayShiftoptions; let i = index" value={{type}}>
                                             {{type}}
                                         </option>
                                     </select>
@@ -91,10 +99,14 @@
                     <label for="leaveType" class="form-label">Leave Type</label>
                     <select class="form-control" id="leaveType" formControlName="leaveType">
                         <option value="">Please select leave type</option>
-                        <option *ngFor="let type of leaveTypeOptions; let i = index" value="{{i}}">
+                        <option *ngFor="let type of leaveTypeOptions; let i = index" value={{type}}>
                             {{type}}
                         </option>
                     </select>
+                    <div style="font-size: small;" class="form-text text-danger"
+                        *ngIf="leaveType.errors?.['required'] && (leaveType.touched || leaveType.dirty)">
+                        Leave Type is Required !
+                    </div>
                 </div>
             </div>
 
@@ -104,14 +116,19 @@
                         <label for="reason" class="form-label">Reason for leave</label>
                         <textarea class="form-control" id="reason" formControlName="reason"></textarea>
                     </div>
+                    <div style="font-size: small;" class="form-text text-danger"
+                        *ngIf="reason.errors?.['required'] && (reason.touched || reason.dirty)">
+                        Please enter reason for taking leave !
+                    </div>
                 </div>
             </div>
 
 
 
 
-            <div class="mt-3 mb-2">
-                <button type="submit" style="scale: 1.2;" mat-raised-button color="primary">Submit</button>
+            <div class="mt-3 mb-4 d-flex justify-content-center">
+                <button type="submit" style="scale: 1.2;" mat-raised-button 
+                 color="primary">Submit</button>
             </div>
 
         </div>

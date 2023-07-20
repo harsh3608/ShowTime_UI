@@ -19,12 +19,16 @@ export interface LeaveDTO {
     startDate: string
     endDate: string
     reason: string
-    leaveType: number
+    leaveType: string
     isApproved: boolean
     isRejected: boolean
     isHalfDay: boolean
-    halfDayShift: number
+    halfDayShift: string
     isPaid: boolean
+    managerId: any
+    managerName: string
+    dateOfRequest: string
+    leaveDays: number
 }
 
 export interface LeaveAddRequest {
@@ -33,11 +37,15 @@ export interface LeaveAddRequest {
     startDate: string
     endDate: string
     reason: string
-    leaveType: number
+    leaveType: string 
     isApproved: boolean
     isRejected: boolean
     isHalfDay: boolean
-    halfDayShift: number
+    halfDayShift: string
     isPaid: boolean
+    managerId: any
+    managerName: string
+    dateOfRequest: string
+    leaveDays: number
 }
 

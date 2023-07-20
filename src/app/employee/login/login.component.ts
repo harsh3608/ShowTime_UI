@@ -46,6 +46,8 @@ export class LoginComponent implements OnInit {
           if(res.isSuccess && res.statusCode == 200){
             if(res.response.userType == 'Employee'){
               this.authService.setToken(res.response.token);
+              this.authService.storeManagerId(res.response.managerId);
+              this.authService.storeManagerName(res.response.managerName);
               //
               this.toastr.success('Logged in Successfully!', 'Success!',{
                 timeOut: 2000,
