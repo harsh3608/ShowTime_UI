@@ -27,12 +27,17 @@
     <h2>All Leave Applications</h2>
   </div>
 
-  <div class="flex align-items-center justify-content-end">
-    <span class="mx-1 text-color">Items per page: </span>
-    <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows2" (ngModelChange)="first2 = 0"></p-dropdown>
-    <p-paginator [first]="first2" [rows]="rows2" [totalRecords]="120" (onPageChange)="onPageChange2($event)" [showCurrentPageReport]="true"
-        currentPageReportTemplate="{first} - {last} of {totalRecords}" [showPageLinks]="false" [showFirstLastIcon]="false" ></p-paginator>
+  <div class="">
+    <div class="d-flex flex-row align-items-center justify-content-end">
+      <span class="mx-1 text-color">Items per page: </span>
+      <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows2"
+        (ngModelChange)="first2 = 0"></p-dropdown>
+      <p-paginator [first]="first2" [rows]="rows2" [totalRecords]="120" (onPageChange)="onPageChange2($any($event))"
+        [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}"
+        [showPageLinks]="false" [showFirstLastIcon]="false"></p-paginator>
+    </div>
   </div>
+
   <p-table [value]="allLeaveRequests" [tableStyle]="{'width': '100%'}">
 
     <ng-template pTemplate="colgroup">
@@ -50,7 +55,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th >Status </th>
+        <th>Status </th>
         <th pSortableColumn="username">Employee Name <p-sortIcon field="username"></p-sortIcon></th>
         <th pSortableColumn="leaveType">Leave Type <p-sortIcon field="leaveType"></p-sortIcon></th>
         <th pSortableColumn="isPaid">Paid leave? <p-sortIcon field="isPaid"></p-sortIcon></th>
@@ -60,7 +65,7 @@
         <th pSortableColumn="dateOfRequest">Category <p-sortIcon field="dateOfRequest"></p-sortIcon></th>
       </tr>
     </ng-template>
-    
+
     <ng-template pTemplate="body" let-leave>
       <tr *ngFor="let leave of allLeaveRequests">
         <td>{{leave.isApproved}}</td>
