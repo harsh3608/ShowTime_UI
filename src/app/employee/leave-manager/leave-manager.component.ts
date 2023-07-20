@@ -39,6 +39,8 @@ export class LeaveManagerComponent implements OnInit{
     );
     dialogRef.addPanelClass('rounded-dialog-container');
     dialogRef.afterClosed().subscribe(result => {
+      this.GetAllEmpLeaves();
+      this.GetEmpLeaves();
     });
   }
 

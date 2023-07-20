@@ -45,5 +45,6 @@ export interface LeaveAddRequest {
     managerId: any
     managerName: string
     dateOfRequest: string
+    leaveDays: number
 }
 

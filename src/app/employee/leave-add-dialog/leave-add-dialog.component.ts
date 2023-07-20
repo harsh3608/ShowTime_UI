@@ -58,6 +58,7 @@ export class LeaveAddDialogComponent implements OnInit{
       isPaid: new FormControl(false, [Validators.required]),
       managerId: new FormControl(this.managerId ),
       managerName: new FormControl(this.managerName, [Validators.required]),
+      leaveDays: new FormControl(0, )
     });
     
   }
