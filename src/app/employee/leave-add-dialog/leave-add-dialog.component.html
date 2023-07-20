@@ -37,7 +37,7 @@
 
                 <div class="col mb-3 form-input">
                     <div>
-                        <label for="isPaid" class="form-label">Is paid leave?</label>
+                        <label for="isPaid" class="form-label">paid leave?</label>
                         <mat-slide-toggle class="form-control" id="isPaid" formControlName="isPaid"></mat-slide-toggle>
                     </div>
                 </div>
@@ -75,9 +75,9 @@
                         <div class="d-flex flex-row" *ngIf="!disableHalfDay">
                             <div class="col-4" style="padding-left: 5px;">
                                 <div>
-                                    <label for="isHalfDay" class="form-label">Is Half Day?</label>
-                                    <mat-checkbox class="example-margin" [disabled]="true"
-                                        checked="true"></mat-checkbox>
+                                    <label for="isHalfDay" class="form-label">Half Day</label>
+                                    <mat-slide-toggle style="scale: 1;margin-right: 20px; margin-top: 0%; width: 70px;" 
+                                    class="form-control" id="isHalfDay" formControlName="isHalfDay"></mat-slide-toggle>
                                 </div>
                             </div>
                             <div class="col">
@@ -85,8 +85,8 @@
                                     <label for="halfDayShift" class="form-label">Leave Type</label>
                                     <select class="form-control" id="halfDayShift" formControlName="halfDayShift">
                                         <option value="">Select half day shift</option>
-                                        <option *ngFor="let type of halfDayShiftoptions; let i = index" value={{type}}>
-                                            {{type}}
+                                        <option *ngFor="let shift of halfDayShiftoptions; let i = index" value={{i}}>
+                                            {{shift}}
                                         </option>
                                     </select>
                                 </div>
@@ -99,7 +99,7 @@
                     <label for="leaveType" class="form-label">Leave Type</label>
                     <select class="form-control" id="leaveType" formControlName="leaveType">
                         <option value="">Please select leave type</option>
-                        <option *ngFor="let type of leaveTypeOptions; let i = index" value={{type}}>
+                        <option *ngFor="let type of leaveTypeOptions; let i = index" value={{i}}>
                             {{type}}
                         </option>
                     </select>
