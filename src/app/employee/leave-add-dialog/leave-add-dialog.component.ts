@@ -20,6 +20,8 @@ export class LeaveAddDialogComponent implements OnInit{
   disableHalfDay: boolean = true;
   isLoading: boolean = false;
   leaveRequest!: LeaveAddRequest;
+  managerId:any;
+  managerName!:string;
 
 
   constructor(
@@ -31,8 +33,8 @@ export class LeaveAddDialogComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this.authService.getPersonName();
-    this.authService.getUserId();
+    this.managerId = this.authService.getManagerId();
+    this.managerName = this.authService.getManagerName();
 
     this.halfDayShiftoptions = Object.keys(HalfDayShiftOptions)
     .filter(key => isNaN(Number(key))) // Exclude numeric keys, if any
@@ -53,7 +55,9 @@ export class LeaveAddDialogComponent implements OnInit{
       isRejected: new FormControl(false, ),
       isHalfDay: new FormControl(false, ),
       halfDayShift: new FormControl(''),
-      isPaid: new FormControl(false, [Validators.required])
+      isPaid: new FormControl(false, [Validators.required]),
+      managerId: new FormControl(this.managerId ),
+      managerName: new FormControl(this.managerName, [Validators.required]),
     });
     
   }
@@ -79,7 +83,7 @@ export class LeaveAddDialogComponent implements OnInit{
             this.dialogRef.close();
           }
         }
-      )
+      );
 
     }, 2000);
     

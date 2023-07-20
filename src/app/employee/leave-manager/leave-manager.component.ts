@@ -47,7 +47,7 @@ export class LeaveManagerComponent implements OnInit{
       (res) => {
         if(res.isSuccess){
           this.allLeaveRequests = res.response;
-          console.log(this.allLeaveRequests);
+          //console.log(this.allLeaveRequests);
           
         }else{
           this.toastr.warning(res.message, 'Failed',{
@@ -63,7 +63,7 @@ export class LeaveManagerComponent implements OnInit{
       (res) => {
         if(res.isSuccess){
           this.userLeaveRequests = res.response;
-          console.log(this.userLeaveRequests);
+          //console.log(this.userLeaveRequests);
           
         }else{
           this.toastr.warning(res.message, 'Failed',{
