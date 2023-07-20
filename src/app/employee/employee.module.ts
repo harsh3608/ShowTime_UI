@@ -23,6 +23,7 @@ import { LeaveManagerComponent } from './leave-manager/leave-manager.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    TableModule
 
   ]
 })

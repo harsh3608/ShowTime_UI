@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Calendar, EventInput } from '@fullcalendar/core';
+import { Calendar, EventInput } from '@fullcalendar/core'; 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { PunchService } from '../shared/services/punch.service';
 import { AuthService } from '../shared/authorization/auth.service';
