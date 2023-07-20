@@ -58,7 +58,7 @@
         <th>Status </th>
         <th pSortableColumn="username">Employee Name <p-sortIcon field="username"></p-sortIcon></th>
         <th pSortableColumn="leaveType">Leave Type <p-sortIcon field="leaveType"></p-sortIcon></th>
-        <th pSortableColumn="isPaid">Paid leave? <p-sortIcon field="isPaid"></p-sortIcon></th>
+        <th pSortableColumn="isPaid">Paid leave <p-sortIcon field="isPaid"></p-sortIcon></th>
         <th pSortableColumn="startDate">From <p-sortIcon field="startDate"></p-sortIcon></th>
         <th pSortableColumn="endDate">To <p-sortIcon field="endDate"></p-sortIcon></th>
         <th pSortableColumn="leaveDays">Days Taken<p-sortIcon field="leaveDays"></p-sortIcon></th>
@@ -69,15 +69,15 @@
     <ng-template pTemplate="body" let-leave>
       <tr>
         <td>
-          <span class="material-icons text-success" *ngIf="leave.isApproved">
+          <span class="material-icons text-success" *ngIf="leave.status==1">
             thumb_up
           </span>
 
-          <span class="material-icons text-danger" *ngIf="leave.isRejected">
+          <span class="material-icons text-danger" *ngIf="leave.status==2">
             thumb_down
           </span>
 
-          <span class="material-icons text-warning" *ngIf="!leave.isApproved && !leave.isRejected">
+          <span class="material-icons text-warning" *ngIf="leave.status==0">
             pending
           </span>
         </td>
