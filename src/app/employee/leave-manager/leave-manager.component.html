@@ -4,7 +4,7 @@
 
   <div class="d-flex flex-row-reverse">
     <div class="mx-5">
-      <button class="btn btn-outline-primary" (click)="OpenAddLeaveDialog()">Add leave request</button>
+      <button class="btn btn-outline-primary" (click)="OpenAddLeaveDialog()">Apply Leave</button>
     </div>
   </div>
 
@@ -62,13 +62,25 @@
         <th pSortableColumn="startDate">From <p-sortIcon field="startDate"></p-sortIcon></th>
         <th pSortableColumn="endDate">To <p-sortIcon field="endDate"></p-sortIcon></th>
         <th pSortableColumn="leaveDays">Days Taken<p-sortIcon field="leaveDays"></p-sortIcon></th>
-        <th pSortableColumn="dateOfRequest">Category <p-sortIcon field="dateOfRequest"></p-sortIcon></th>
+        <th pSortableColumn="dateOfRequest">Request Date <p-sortIcon field="dateOfRequest"></p-sortIcon></th>
       </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-leave>
-      <tr *ngFor="let leave of allLeaveRequests">
-        <td>{{leave.isApproved}}</td>
+      <tr>
+        <td>
+          <span class="material-icons text-success" *ngIf="leave.isApproved">
+            thumb_up
+          </span>
+
+          <span class="material-icons text-danger" *ngIf="leave.isRejected">
+            thumb_down
+          </span>
+
+          <span class="material-icons text-warning" *ngIf="!leave.isApproved && !leave.isRejected">
+            pending
+          </span>
+        </td>
         <td>{{leave.username}}</td>
         <td>{{leave.leaveType}}</td>
         <td>{{leave.isPaid ? 'Paid' : 'Unpaid'}}</td>

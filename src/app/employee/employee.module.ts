@@ -25,6 +25,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { PaginatorModule } from 'primeng/paginator';
     MatSlideToggleModule,
     MatCheckboxModule,
     TableModule,
-    PaginatorModule
+    PaginatorModule,
+    InputSwitchModule
 
   ]
 })

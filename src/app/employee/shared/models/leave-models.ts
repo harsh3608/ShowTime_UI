@@ -13,39 +13,37 @@ export interface MultipleLeaveResponse {
 }
 
 export interface LeaveDTO {
-    id: string
-    userId: string
-    username: string
-    startDate: string
-    endDate: string
-    reason: string
-    leaveType: string
-    isApproved: boolean
-    isRejected: boolean
-    isHalfDay: boolean
-    halfDayShift: string
-    isPaid: boolean
-    managerId: any
-    managerName: string
-    dateOfRequest: string
-    leaveDays: number
+  id: string
+  userId: string
+  username: string
+  startDate: string
+  endDate: string
+  reason: string
+  leaveType: number
+  status: number
+  isHalfDay: boolean
+  halfDayShift: number
+  isPaid: boolean
+  managerId: string
+  managerName: string
+  dateOfRequest: string
+  leaveDays: number
 }
 
 export interface LeaveAddRequest {
-    userId: string
-    username: string
-    startDate: string
-    endDate: string
-    reason: string
-    leaveType: string 
-    isApproved: boolean
-    isRejected: boolean
-    isHalfDay: boolean
-    halfDayShift: string
-    isPaid: boolean
-    managerId: any
-    managerName: string
-    dateOfRequest: string
-    leaveDays: number
+  userId: string
+  username: string
+  startDate: string
+  endDate: string
+  reason: string
+  leaveType: number
+  status: number
+  isHalfDay: boolean
+  halfDayShift: number
+  isPaid: boolean
+  managerId: string
+  managerName: string
+  dateOfRequest: string
+  leaveDays: number
 }
 
