@@ -28,6 +28,7 @@ export interface LeaveDTO {
     managerId: any
     managerName: string
     dateOfRequest: string
+    leaveDays: number
 }
 
 export interface LeaveAddRequest {

@@ -2,54 +2,79 @@
 
 <div class="mt-4">
 
-<div class="d-flex flex-row-reverse">
+  <div class="d-flex flex-row-reverse">
     <div class="mx-5">
-        <button class="btn btn-outline-primary" (click)="OpenAddLeaveDialog()">Add leave request</button>
+      <button class="btn btn-outline-primary" (click)="OpenAddLeaveDialog()">Add leave request</button>
     </div>
-</div>
+  </div>
 
-<div class="my-4">
-    <div class="container border mx-2">
-        <div>
-            <h2>All Leave Applications</h2>
-            <hr>
-        </div>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Semester</th>
-                <th scope="col">Branch</th>
-                <th scope="col">Mobile</th>
-                <th scope="col">Result</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-        
-              <tr *ngFor="let leave of allLeaveRequests">
-                <td>{{leave.isApproved}}</td>
-                <td>{{leave.username}}</td>
-                <td>{{leave.leaveType}}</td>
-                <td>{{leave.isPaid ? 'Paid' : 'Unpaid'}}</td>
-                <td>{{leave.startDate}}</td>
-                <td>{{leave.endDate}}</td>
-                
-                
-              </tr>
-        
-            </tbody>
-          </table>
+  <!-- <div class="my-4 w-100" >
+    <div class="container border mx-2" >
+      
+      
+
+
     </div>
 
     <div class="container border mx-2">
-        <div>
-            <h2>Your Leave Applications</h2>
-        </div>
+      <div>
+        <h2>Your Leave Applications</h2>
+      </div>
     </div>
-</div>
+  </div> -->
 
+  <div>
+    <h2>All Leave Applications</h2>
+  </div>
+
+  <div class="flex align-items-center justify-content-end">
+    <span class="mx-1 text-color">Items per page: </span>
+    <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows2" (ngModelChange)="first2 = 0"></p-dropdown>
+    <p-paginator [first]="first2" [rows]="rows2" [totalRecords]="120" (onPageChange)="onPageChange2($event)" [showCurrentPageReport]="true"
+        currentPageReportTemplate="{first} - {last} of {totalRecords}" [showPageLinks]="false" [showFirstLastIcon]="false" ></p-paginator>
+  </div>
+  <p-table [value]="allLeaveRequests" [tableStyle]="{'width': '100%'}">
+
+    <ng-template pTemplate="colgroup">
+      <colgroup>
+        <col [style.width]="'120px'">
+        <col [style.width]="'200px'">
+        <col [style.width]="'200px'">
+        <col [style.width]="'200px'">
+        <col [style.width]="'200px'">
+        <col [style.width]="'200px'">
+        <col [style.width]="'200px'">
+        <col [style.width]="'200px'">
+
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th >Status </th>
+        <th pSortableColumn="username">Employee Name <p-sortIcon field="username"></p-sortIcon></th>
+        <th pSortableColumn="leaveType">Leave Type <p-sortIcon field="leaveType"></p-sortIcon></th>
+        <th pSortableColumn="isPaid">Paid leave? <p-sortIcon field="isPaid"></p-sortIcon></th>
+        <th pSortableColumn="startDate">From <p-sortIcon field="startDate"></p-sortIcon></th>
+        <th pSortableColumn="endDate">To <p-sortIcon field="endDate"></p-sortIcon></th>
+        <th pSortableColumn="leaveDays">Days Taken<p-sortIcon field="leaveDays"></p-sortIcon></th>
+        <th pSortableColumn="dateOfRequest">Category <p-sortIcon field="dateOfRequest"></p-sortIcon></th>
+      </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="body" let-leave>
+      <tr *ngFor="let leave of allLeaveRequests">
+        <td>{{leave.isApproved}}</td>
+        <td>{{leave.username}}</td>
+        <td>{{leave.leaveType}}</td>
+        <td>{{leave.isPaid ? 'Paid' : 'Unpaid'}}</td>
+        <td>{{leave.startDate | date: 'dd-MMM-yyyy'}}</td>
+        <td>{{leave.endDate | date: 'dd-MMM-yyyy'}}</td>
+        <td>{{leave.leaveDays}} Day/s</td>
+        <td>{{leave.dateOfRequest | date: 'dd-MMM-yyyy'}}</td>
+
+      </tr>
+    </ng-template>
+  </p-table>
 
 
 </div>

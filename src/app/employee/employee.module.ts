@@ -24,6 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { TableModule } from 'primeng/table';
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     MatCheckboxModule,
-    TableModule
+    TableModule,
+    PaginatorModule
 
   ]
 })
