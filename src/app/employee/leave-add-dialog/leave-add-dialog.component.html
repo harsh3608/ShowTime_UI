@@ -85,7 +85,7 @@
                                     <label for="halfDayShift" class="form-label">Leave Type</label>
                                     <select class="form-control" id="halfDayShift" formControlName="halfDayShift">
                                         <option value="">Select half day shift</option>
-                                        <option *ngFor="let type of halfDayShiftoptions; let i = index" value={{i}}>
+                                        <option *ngFor="let type of halfDayShiftoptions; let i = index" value={{type}}>
                                             {{type}}
                                         </option>
                                     </select>
@@ -99,7 +99,7 @@
                     <label for="leaveType" class="form-label">Leave Type</label>
                     <select class="form-control" id="leaveType" formControlName="leaveType">
                         <option value="">Please select leave type</option>
-                        <option *ngFor="let type of leaveTypeOptions; let i = index" value={{i}}>
+                        <option *ngFor="let type of leaveTypeOptions; let i = index" value={{type}}>
                             {{type}}
                         </option>
                     </select>

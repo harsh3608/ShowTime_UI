@@ -48,7 +48,7 @@ export class LeaveAddDialogComponent implements OnInit{
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
       reason: new FormControl('', [Validators.required]),
-      leaveType: new FormControl(0, [Validators.required]),
+      leaveType: new FormControl('', [Validators.required]),
       isApproved: new FormControl(false, ),
       isRejected: new FormControl(false, ),
       isHalfDay: new FormControl(false, ),

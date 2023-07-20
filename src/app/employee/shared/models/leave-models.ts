@@ -33,7 +33,7 @@ export interface LeaveAddRequest {
     startDate: string
     endDate: string
     reason: string
-    leaveType: string
+    leaveType: string 
     isApproved: boolean
     isRejected: boolean
     isHalfDay: boolean
