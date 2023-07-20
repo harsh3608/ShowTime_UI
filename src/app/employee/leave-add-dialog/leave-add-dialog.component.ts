@@ -4,6 +4,8 @@ import { AuthService } from '../shared/authorization/auth.service';
 import { HalfDayShiftOptions, LeaveTypeOptions } from '../shared/enums/leave-enums';
 import { LeaveAddRequest } from '../shared/models/leave-models';
 import { LeaveService } from '../shared/services/leave.service';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-leave-add-dialog',
@@ -23,7 +25,9 @@ export class LeaveAddDialogComponent implements OnInit{
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private leaveService: LeaveService
+    private leaveService: LeaveService,
+    private toastr: ToastrService,
+    private dialogRef: MatDialogRef<LeaveAddDialogComponent>,
   ){}
 
   ngOnInit(): void {
@@ -44,7 +48,7 @@ export class LeaveAddDialogComponent implements OnInit{
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
       reason: new FormControl('', [Validators.required]),
-      leaveType: new FormControl('', [Validators.required]),
+      leaveType: new FormControl(0, [Validators.required]),
       isApproved: new FormControl(false, ),
       isRejected: new FormControl(false, ),
       isHalfDay: new FormControl(false, ),
@@ -59,14 +63,20 @@ export class LeaveAddDialogComponent implements OnInit{
     this.isLoading = true;
     setTimeout(() => {
       this.addLeaveRequestForm.markAllAsTouched();
-      //console.log(this.addLeaveRequestForm.value);
+      console.log(this.addLeaveRequestForm.value);
       this.leaveRequest = this.addLeaveRequestForm.value;
       this.leaveService.AddLeaveRequest(this.leaveRequest).subscribe(
         (res) => {
           if(res.isSuccess){
-
+            this.toastr.success(res.message, 'Success!',{
+              timeOut: 2000,
+            });
+            this.dialogRef.close();
           }else{
-            
+            this.toastr.warning(res.message, 'Failed!',{
+              timeOut: 2000,
+            });
+            this.dialogRef.close();
           }
         }
       )
