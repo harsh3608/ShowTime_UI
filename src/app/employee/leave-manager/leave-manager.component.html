@@ -1,10 +1,55 @@
 <app-employee-menu></app-employee-menu>
 
 <div class="mt-4">
+
 <div class="d-flex flex-row-reverse">
     <div class="mx-5">
         <button class="btn btn-outline-primary" (click)="OpenAddLeaveDialog()">Add leave request</button>
     </div>
 </div>
+
+<div class="my-4">
+    <div class="container border mx-2">
+        <div>
+            <h2>All Leave Applications</h2>
+            <hr>
+        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Result</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+        
+              <tr *ngFor="let leave of allLeaveRequests">
+                <td>{{leave.isApproved}}</td>
+                <td>{{leave.username}}</td>
+                <td>{{leave.leaveType}}</td>
+                <td>{{leave.isPaid ? 'Paid' : 'Unpaid'}}</td>
+                <td>{{leave.startDate}}</td>
+                <td>{{leave.endDate}}</td>
+                
+                
+              </tr>
+        
+            </tbody>
+          </table>
+    </div>
+
+    <div class="container border mx-2">
+        <div>
+            <h2>Your Leave Applications</h2>
+        </div>
+    </div>
+</div>
+
+
 
 </div>

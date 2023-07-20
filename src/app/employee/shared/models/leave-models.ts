@@ -25,6 +25,9 @@ export interface LeaveDTO {
     isHalfDay: boolean
     halfDayShift: string
     isPaid: boolean
+    managerId: any
+    managerName: string
+    dateOfRequest: string
 }
 
 export interface LeaveAddRequest {
@@ -39,5 +42,8 @@ export interface LeaveAddRequest {
     isHalfDay: boolean
     halfDayShift: string
     isPaid: boolean
+    managerId: any
+    managerName: string
+    dateOfRequest: string
 }
 
