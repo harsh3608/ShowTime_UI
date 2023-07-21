@@ -27,6 +27,7 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ButtonModule } from "primeng/button";
+import { DisableWeekendsDirective } from './shared/directives/disable-weekends.directive';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ButtonModule } from "primeng/button";
     ChangePasswordComponent,
     WorkCalendarComponent,
     LeaveAddDialogComponent,
-    LeaveManagerComponent
+    LeaveManagerComponent,
+    DisableWeekendsDirective
   ],
   imports: [
     CommonModule,
@@ -66,6 +68,7 @@ import { ButtonModule } from "primeng/button";
     ButtonModule,
 
     
-  ]
+  ],
+  exports:[DisableWeekendsDirective]
 })
 export class EmployeeModule { }

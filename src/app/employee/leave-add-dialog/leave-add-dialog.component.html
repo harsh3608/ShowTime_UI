@@ -60,7 +60,7 @@
                     <div>
                         <label for="endDate" class="form-label">To</label>
                         <input type="date" class="form-control" id="endDate" formControlName="endDate"
-                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()">
+                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()" appDisableWeekends>
                     </div>
                     <div style="font-size: small;" class="form-text text-danger"
                         *ngIf="endDate.errors?.['required'] && (endDate.touched || endDate.dirty)">
