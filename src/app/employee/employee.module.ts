@@ -26,6 +26,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { ButtonModule } from "primeng/button";
 
 @NgModule({
   declarations: [
@@ -61,8 +62,10 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     MatCheckboxModule,
     TableModule,
     PaginatorModule,
-    InputSwitchModule
+    InputSwitchModule,
+    ButtonModule,
 
+    
   ]
 })
 export class EmployeeModule { }

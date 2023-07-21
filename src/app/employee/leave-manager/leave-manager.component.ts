@@ -5,6 +5,8 @@ import { AuthService } from '../shared/authorization/auth.service';
 import { LeaveService } from '../shared/services/leave.service';
 import { LeaveDTO } from '../shared/models/leave-models';
 import { ToastrService } from 'ngx-toastr';
+import { Table } from 'primeng/table';
+import { LeaveTypeOptions } from '../shared/enums/leave-enums';
 
 @Component({
   selector: 'app-leave-manager',
@@ -16,20 +18,7 @@ export class LeaveManagerComponent implements OnInit{
   employeeName!:string;
   allLeaveRequests:LeaveDTO[]=[];
   userLeaveRequests:LeaveDTO[]=[];
-
-  // first1: number = 0;
-  // rows1: number = 10;
-  // first2: number = 0;
-  // rows2: number = 10;
-  // first3: number = 0;
-  // rows3: number = 10;
-  // totalRecords: number = this.allLeaveRequests.length;
-  // options = [
-  //   { label: 5, value: 5 },
-  //   { label: 10, value: 10 },
-  //   { label: 20, value: 20 },
-  //   { label: 120, value: 120 }
-  // ];
+  leaveTypeOptions: string[] = [] ;
 
   constructor(
     private authService: AuthService,
@@ -39,6 +28,9 @@ export class LeaveManagerComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+    this.leaveTypeOptions = Object.keys(LeaveTypeOptions)
+    .filter(key => isNaN(Number(key))) // Exclude numeric keys, if any
+    .map(key => LeaveTypeOptions[key as keyof typeof LeaveTypeOptions]);
     this.employeeId = this.authService.getUserId();
     this.GetAllEmpLeaves();
     this.GetEmpLeaves();
@@ -90,28 +82,16 @@ export class LeaveManagerComponent implements OnInit{
     );
   }
 
+  clear(table: Table) {
+    table.clear();
+    const inputElement = document.getElementById('search') as HTMLInputElement;
+    inputElement.value = '';
+  }
 
+  GetLeaveType(index: number): string {
+    return this.leaveTypeOptions[index];
+  }
 
-
-
-
-
-
-
-// onPageChange1(event: PageEvent) {
-//     this.first1 = event.first;
-//     this.rows1 = event.rows;
-// }
-
-// onPageChange2(event: PageEvent) {
-//     this.first2 = event.first;
-//     this.rows2 = event.rows;
-// }
-
-// onPageChange3(event: PageEvent) {
-//     this.first3 = event.first;
-//     this.rows3 = event.rows;
-// }
 
 
 
