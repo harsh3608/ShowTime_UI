@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Table } from 'primeng/table';
 import { LeaveTypeOptions } from '../../shared/enums/leave-enums';
 import { LeaveDetailsComponent } from '../leave-details/leave-details.component';
+import { SelfLeaveCalendarComponent } from '../self-leave-calendar/self-leave-calendar.component';
 
 @Component({
   selector: 'app-leave-manager',
@@ -103,6 +104,17 @@ export class LeaveManagerComponent implements OnInit{
   }
 
 
+  OpenCalendarDialog() {
+    const dialogRef = this.dialog.open(SelfLeaveCalendarComponent,
+      {
+        data: {  }
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      this.GetAllEmpLeaves();
+      this.GetEmpLeaves();
+    });
+  }
 
 
 

@@ -1,0 +1,8 @@
+.parent {
+    width: 700px;
+    height: 550px;
+    overflow: hidden;
+    background-color: rgb(252, 243, 243);
+    display: flex;
+    flex-direction: column;
+  }
