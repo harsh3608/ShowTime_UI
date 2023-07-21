@@ -28,6 +28,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ButtonModule } from "primeng/button";
 import { DisableWeekendsDirective } from './shared/directives/disable-weekends.directive';
+import { SelfLeaveCalendarComponent } from './leaves/self-leave-calendar/self-leave-calendar.component';
+import { LeaveDetailsComponent } from './leaves/leave-details/leave-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { DisableWeekendsDirective } from './shared/directives/disable-weekends.d
     WorkCalendarComponent,
     LeaveAddDialogComponent,
     LeaveManagerComponent,
-    DisableWeekendsDirective
+    DisableWeekendsDirective,
+    SelfLeaveCalendarComponent,
+    LeaveDetailsComponent
   ],
   imports: [
     CommonModule,
