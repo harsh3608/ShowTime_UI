@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LeaveAddRequest, MultipleLeaveResponse, SingleLeaveResponse } from '../models/leave-models';
+import { LeaveAddRequest, MultipleLeaveResponse, SingleLeaveResponse, ToggleLeaveStatusDTO } from '../models/leave-models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -34,5 +34,8 @@ export class LeaveService {
     return this.http.get<MultipleLeaveResponse> (this.leaveBaseServerLink+'GetUserAllLeaves/' + userId, { headers: this.headers })
   }
 
+  ToggleLeaveStatus(data : ToggleLeaveStatusDTO) :Observable<SingleLeaveResponse> {
+    return this.http.patch<SingleLeaveResponse> (this.leaveBaseServerLink + 'ToggleLeaveStatus/', data, { headers: this.headers })
+  }
 
 }

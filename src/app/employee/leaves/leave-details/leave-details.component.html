@@ -2,9 +2,22 @@
     <div class="d-flex flex-row justify-content-between mt-0">
         <div></div>
 
-        <div class="p-2 mt-2">
+        <div class="p-2 mt-2 d-flex">
             <h1>Leave Request</h1>
-            
+            &nbsp;&nbsp;
+            <div class="mt-1">
+                <span class="material-icons text-success" *ngIf="leave.status==1">
+                  thumb_up
+                </span>
+      
+                <span class="material-icons text-danger" *ngIf="leave.status==2">
+                  thumb_down
+                </span>
+      
+                <span class="material-icons text-warning" *ngIf="leave.status==0">
+                  pending
+                </span>
+            </div>
         </div>
 
         <div class="p-2" style="align-self: flex-end;">
