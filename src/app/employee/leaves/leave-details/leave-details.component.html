@@ -1,4 +1,5 @@
 <div class="parent">
+
     <div class="d-flex flex-row justify-content-between mt-0">
         <div></div>
 
@@ -7,15 +8,15 @@
             &nbsp;&nbsp;
             <div class="mt-1">
                 <span class="material-icons text-success" *ngIf="leave.status==1">
-                  thumb_up
+                    thumb_up
                 </span>
-      
+
                 <span class="material-icons text-danger" *ngIf="leave.status==2">
-                  thumb_down
+                    thumb_down
                 </span>
-      
+
                 <span class="material-icons text-warning" *ngIf="leave.status==0">
-                  pending
+                    pending
                 </span>
             </div>
         </div>
@@ -27,6 +28,68 @@
         </div>
     </div>
 
+    <div class="content">
+        <form [formGroup]="viewForm">
+            <div class="row p-2 m-2">
+                <div class="col p-1">
+                    <label for="username">Employee Name</label>
+                    <input class="form-control" id="username" formControlName="username" readonly/>
+                </div>
+
+                <div class="col d-flex flex-row">
+                    <div class=" p-1">
+                        <label for="managerName">Manager Name</label>
+                        <input class="form-control" id="managerName" formControlName="managerName" readonly/>
+                    </div>
+
+                    <div class=" p-1" *ngIf="showToggle">
+                        <label for="status">Toggle Status</label>
+                        <input class="form-control" id="status" readonly/>
+                        <span style="position: absolute; top: 20%; right: 80px; ">
+                            <span class="material-icons text-success" *ngIf="leave.status == 1">
+                                thumb_up
+                            </span>
+                            <span class="material-icons text-secondary hoverable" (click)="ToggleLeaveStatus(leave.id, 1)"
+                            *ngIf="leave.status == 0 || leave.status == 2">
+                                thumb_up
+                            </span>
+                            &nbsp;&nbsp;
+                            <span class="material-icons text-danger" *ngIf="leave.status == 2">
+                                thumb_down
+                            </span>
+                            <span class="material-icons text-secondary hoverable" (click)="ToggleLeaveStatus(leave.id, 2)"
+                            *ngIf="leave.status == 0 || leave.status == 1">
+                                thumb_down
+                            </span>
+                        </span>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row p-2 m-2">
+                <div class="col p-1">
+                    <label for="isPaid">Paid Leave</label>
+                    <input class="form-control" id="isPaid" formControlName="isPaid" readonly/>
+                </div>
+
+                <div class="col p-1">
+                    <label for="leaveType">Leave Type</label>
+                    <input class="form-control" id="leaveType" formControlName="leaveType" readonly/>
+                </div>
+            </div>
+
+
+            <div class="row p-2 m-2">
+                <div class="col p-1">
+                    <label for="reason">Reason</label>
+                    <textarea class="form-control" id="reason" formControlName="reason"></textarea>
+                </div>
+            </div>
+
+        </form>
+    </div>
 
 
 
