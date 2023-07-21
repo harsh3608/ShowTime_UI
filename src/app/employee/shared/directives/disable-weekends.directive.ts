@@ -1,10 +1,14 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Directive({
   selector: '[appDisableWeekends]'
 })
 export class DisableWeekendsDirective {
-  constructor(private el: ElementRef) {}
+  constructor(
+    private el: ElementRef,
+    private toastr: ToastrService
+    ) {}
 
   @HostListener('input', ['$event']) onInput(event: Event) {
     const inputElement = this.el.nativeElement as HTMLInputElement;
@@ -14,7 +18,7 @@ export class DisableWeekendsDirective {
     if (dayOfWeek === 0 || dayOfWeek === 6) {
       // Disable weekends
       inputElement.value = ''; // Clear the input value if it's a weekend
-      
+      this.toastr.warning('Leave could not be requested on Weekend days','Warning',{ timeOut:2000})
     }
   }
 }

@@ -48,7 +48,7 @@
                     <div>
                         <label for="startDate" class="form-label">From</label>
                         <input type="date" class="form-control" id="startDate" formControlName="startDate"
-                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()">
+                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()" appDisableWeekends>
                     </div>
                     <div style="font-size: small;" class="form-text text-danger"
                         *ngIf="startDate.errors?.['required'] && (startDate.touched || startDate.dirty)">

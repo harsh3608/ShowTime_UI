@@ -84,8 +84,6 @@ export class LeaveManagerComponent implements OnInit{
 
   clear(table: Table) {
     table.clear();
-    const inputElement = document.getElementById('search') as HTMLInputElement;
-    inputElement.value = '';
   }
 
   GetLeaveType(index: number): string {
@@ -108,13 +106,4 @@ export class LeaveManagerComponent implements OnInit{
 
 
 
-}
-
-
-
-interface PageEvent {
-  first: number;
-  rows: number;
-  page: number;
-  pageCount: number;
 }
