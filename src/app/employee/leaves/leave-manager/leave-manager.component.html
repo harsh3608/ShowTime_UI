@@ -2,43 +2,38 @@
 
 <div class="mt-4">
 
-  <div class="d-flex flex-row-reverse">
-    <div class="mx-5">
-      <button class="btn btn-outline-primary" (click)="OpenAddLeaveDialog()">Apply Leave</button>
-    </div>
-  </div>
+  <div class="d-flex justify-content-between">
 
-  <!-- <div class="my-4 w-100" >
-    <div class="container border mx-2" >
-      
-      
-
-
+    <div class="mx-3">
+      <h1><strong>Leave Applications</strong></h1>
     </div>
 
-    <div class="container border mx-2">
-      <div>
-        <h2>Your Leave Applications</h2>
+    <div class="d-flex flex-row">
+      <div class="mx-3">
+        <button class="btn btn-outline-primary" (click)="OpenAddLeaveDialog()">Apply Leave</button>
+      </div>
+
+      <div class="mx-3" style="margin-bottom: 5%;">
+        <!-- <button pButton label="Clear" class="p-button-outlined " icon="pi pi-filter-slash" (click)="clear(dt)"
+          style="scale: 0.9;"></button> -->
+        <button class="btn btn-outline-primary" (click)="clear(dt)">
+          <div class="d-flex flex-row">
+            <span class="material-icons " style="scale: 0.7;">
+              filter_list_off
+            </span>
+            <span>Clear</span>
+          </div>
+
+        </button>
+
       </div>
     </div>
-  </div> -->
 
-  <div>
-    <h2>All Leave Applications</h2>
   </div>
 
-  <div class="">
-    <div class="d-flex flex-row align-items-center justify-content-end">
-      <span class="mx-1 text-color">Items per page: </span>
-      <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows2"
-        (ngModelChange)="first2 = 0"></p-dropdown>
-      <p-paginator [first]="first2" [rows]="rows2" [totalRecords]="120" (onPageChange)="onPageChange2($any($event))"
-        [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}"
-        [showPageLinks]="false" [showFirstLastIcon]="false"></p-paginator>
-    </div>
-  </div>
-
-  <p-table [value]="allLeaveRequests" [tableStyle]="{'width': '100%'}">
+  <p-table #dt [value]="allLeaveRequests" [tableStyle]="{'width': '100%'}" [rowHover]="true" [rows]="5"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25]" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
 
     <ng-template pTemplate="colgroup">
       <colgroup>
@@ -56,13 +51,14 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Status </th>
-        <th pSortableColumn="username">Employee Name <p-sortIcon field="username"></p-sortIcon></th>
-        <th pSortableColumn="leaveType">Leave Type <p-sortIcon field="leaveType"></p-sortIcon></th>
-        <th pSortableColumn="isPaid">Paid leave <p-sortIcon field="isPaid"></p-sortIcon></th>
+        <th>Employee Name </th>
+        <th>Leave Type </th>
+        <th>Paid leave </th>
         <th pSortableColumn="startDate">From <p-sortIcon field="startDate"></p-sortIcon></th>
         <th pSortableColumn="endDate">To <p-sortIcon field="endDate"></p-sortIcon></th>
-        <th pSortableColumn="leaveDays">Days Taken<p-sortIcon field="leaveDays"></p-sortIcon></th>
+        <th>Days Taken </th>
         <th pSortableColumn="dateOfRequest">Request Date <p-sortIcon field="dateOfRequest"></p-sortIcon></th>
+        <th></th>
       </tr>
     </ng-template>
 
@@ -82,13 +78,20 @@
           </span>
         </td>
         <td>{{leave.username}}</td>
-        <td>{{leave.leaveType}}</td>
+        <!-- <td>{{leave.leaveType}}</td> -->
+        <td>{{GetLeaveType(leave.leaveType)}}</td>
         <td>{{leave.isPaid ? 'Paid' : 'Unpaid'}}</td>
         <td>{{leave.startDate | date: 'dd-MMM-yyyy'}}</td>
         <td>{{leave.endDate | date: 'dd-MMM-yyyy'}}</td>
         <td>{{leave.leaveDays}} Day/s</td>
         <td>{{leave.dateOfRequest | date: 'dd-MMM-yyyy'}}</td>
-
+        <td>
+          <div class="btn" (click)="OpenLeaveDetailsDialog(leave.id)">
+            <span class="material-icons text-secondary" style="scale: 1.2;">
+              preview
+            </span>
+          </div>
+        </td>
       </tr>
     </ng-template>
   </p-table>

@@ -48,7 +48,7 @@
                     <div>
                         <label for="startDate" class="form-label">From</label>
                         <input type="date" class="form-control" id="startDate" formControlName="startDate"
-                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()">
+                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()" appDisableWeekends>
                     </div>
                     <div style="font-size: small;" class="form-text text-danger"
                         *ngIf="startDate.errors?.['required'] && (startDate.touched || startDate.dirty)">
@@ -60,7 +60,7 @@
                     <div>
                         <label for="endDate" class="form-label">To</label>
                         <input type="date" class="form-control" id="endDate" formControlName="endDate"
-                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()">
+                            [min]="currentDate.toISOString().substring(0, 10)" (change)="onDateChange()" appDisableWeekends>
                     </div>
                     <div style="font-size: small;" class="form-text text-danger"
                         *ngIf="endDate.errors?.['required'] && (endDate.touched || endDate.dirty)">
@@ -75,16 +75,16 @@
                         <div class="d-flex flex-row" *ngIf="!disableHalfDay">
                             <div class="col-4" style="padding-left: 5px;">
                                 <div>
-                                    <label for="isHalfDay" class="form-label">Half Day</label>
+                                    <label for="isHalfDay" class="form-label">Half Day?</label>
                                     <mat-slide-toggle style="scale: 1;margin-right: 20px; margin-top: 0%; width: 70px;" 
                                     class="form-control" id="isHalfDay" formControlName="isHalfDay"></mat-slide-toggle>
                                 </div>
                             </div>
                             <div class="col">
-                                <div>
-                                    <label for="halfDayShift" class="form-label">Leave Type</label>
+                                <div [hidden]="!addLeaveRequestForm.get('isHalfDay')?.value">
+                                    <label for="halfDayShift" class="form-label">Half Day Shift</label>
                                     <select class="form-control" id="halfDayShift" formControlName="halfDayShift">
-                                        <option value="">Select half day shift</option>
+                                        <option value="5">Select half day shift</option>
                                         <option *ngFor="let shift of halfDayShiftoptions; let i = index" value={{i}}>
                                             {{shift}}
                                         </option>

@@ -1,0 +1,17 @@
+.parent {
+  width: 700px;
+  height: 600px;
+  overflow: hidden;
+  background-color: rgb(252, 243, 243);
+  display: flex;
+  flex-direction: column;
+}
+
+.hoverable {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.hoverable:hover {
+  color: blue; /* Change the color as you like to indicate the button state on hover */
+}

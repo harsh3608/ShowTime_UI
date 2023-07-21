@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaveAddDialogComponent } from '../leave-add-dialog/leave-add-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from '../shared/authorization/auth.service';
-import { LeaveService } from '../shared/services/leave.service';
-import { LeaveDTO } from '../shared/models/leave-models';
+import { AuthService } from '../../shared/authorization/auth.service';
+import { LeaveService } from '../../shared/services/leave.service';
+import { LeaveDTO } from '../../shared/models/leave-models';
 import { ToastrService } from 'ngx-toastr';
+import { Table } from 'primeng/table';
+import { LeaveTypeOptions } from '../../shared/enums/leave-enums';
+import { LeaveDetailsComponent } from '../leave-details/leave-details.component';
 
 @Component({
   selector: 'app-leave-manager',
@@ -16,20 +19,7 @@ export class LeaveManagerComponent implements OnInit{
   employeeName!:string;
   allLeaveRequests:LeaveDTO[]=[];
   userLeaveRequests:LeaveDTO[]=[];
-
-  first1: number = 0;
-  rows1: number = 10;
-  first2: number = 0;
-  rows2: number = 10;
-  first3: number = 0;
-  rows3: number = 10;
-  totalRecords: number = 120;
-  options = [
-    { label: 5, value: 5 },
-    { label: 10, value: 10 },
-    { label: 20, value: 20 },
-    { label: 120, value: 120 }
-  ];
+  leaveTypeOptions: string[] = [] ;
 
   constructor(
     private authService: AuthService,
@@ -39,6 +29,9 @@ export class LeaveManagerComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+    this.leaveTypeOptions = Object.keys(LeaveTypeOptions)
+    .filter(key => isNaN(Number(key))) // Exclude numeric keys, if any
+    .map(key => LeaveTypeOptions[key as keyof typeof LeaveTypeOptions]);
     this.employeeId = this.authService.getUserId();
     this.GetAllEmpLeaves();
     this.GetEmpLeaves();
@@ -51,7 +44,6 @@ export class LeaveManagerComponent implements OnInit{
         data: {  }
       }
     );
-    dialogRef.addPanelClass('rounded-dialog-container');
     dialogRef.afterClosed().subscribe(result => {
       this.GetAllEmpLeaves();
       this.GetEmpLeaves();
@@ -63,7 +55,7 @@ export class LeaveManagerComponent implements OnInit{
       (res) => {
         if(res.isSuccess){
           this.allLeaveRequests = res.response;
-          console.log(this.allLeaveRequests);
+          //console.log(this.allLeaveRequests);
           
         }else{
           this.toastr.warning(res.message, 'Failed',{
@@ -90,39 +82,28 @@ export class LeaveManagerComponent implements OnInit{
     );
   }
 
+  clear(table: Table) {
+    table.clear();
+  }
+
+  GetLeaveType(index: number): string {
+    return this.leaveTypeOptions[index];
+  }
+
+  OpenLeaveDetailsDialog(id:any){
+    const dialogRef = this.dialog.open(LeaveDetailsComponent,
+      {
+        data: { leaveId: id }
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      this.GetAllEmpLeaves();
+      this.GetEmpLeaves();
+    });
+  }
 
 
 
 
 
-
-
-
-onPageChange1(event: PageEvent) {
-    this.first1 = event.first;
-    this.rows1 = event.rows;
-}
-
-onPageChange2(event: PageEvent) {
-    this.first2 = event.first;
-    this.rows2 = event.rows;
-}
-
-onPageChange3(event: PageEvent) {
-    this.first3 = event.first;
-    this.rows3 = event.rows;
-}
-
-
-
-
-}
-
-
-
-interface PageEvent {
-  first: number;
-  rows: number;
-  page: number;
-  pageCount: number;
 }

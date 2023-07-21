@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../shared/authorization/auth.service';
-import { HalfDayShiftOptions, LeaveTypeOptions } from '../shared/enums/leave-enums';
-import { LeaveAddRequest } from '../shared/models/leave-models';
-import { LeaveService } from '../shared/services/leave.service';
+import { AuthService } from '../../shared/authorization/auth.service';
+import { HalfDayShiftOptions, LeaveTypeOptions } from '../../shared/enums/leave-enums';
+import { LeaveAddRequest } from '../../shared/models/leave-models';
+import { LeaveService } from '../../shared/services/leave.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef } from '@angular/material/dialog';
 

@@ -47,3 +47,7 @@ export interface LeaveAddRequest {
   leaveDays: number
 }
 
+export interface ToggleLeaveStatusDTO {
+  leaveId: any
+  value: number
+}
