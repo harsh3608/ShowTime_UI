@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaveAddDialogComponent } from '../leave-add-dialog/leave-add-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from '../shared/authorization/auth.service';
-import { LeaveService } from '../shared/services/leave.service';
-import { LeaveDTO } from '../shared/models/leave-models';
+import { AuthService } from '../../shared/authorization/auth.service';
+import { LeaveService } from '../../shared/services/leave.service';
+import { LeaveDTO } from '../../shared/models/leave-models';
 import { ToastrService } from 'ngx-toastr';
 import { Table } from 'primeng/table';
-import { LeaveTypeOptions } from '../shared/enums/leave-enums';
+import { LeaveTypeOptions } from '../../shared/enums/leave-enums';
 
 @Component({
   selector: 'app-leave-manager',
