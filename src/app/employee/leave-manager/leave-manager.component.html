@@ -28,17 +28,21 @@
   </div>
 
   <div class="">
-    <div class="d-flex flex-row align-items-center justify-content-end">
+    <!-- <div class="d-flex flex-row align-items-center justify-content-end">
       <span class="mx-1 text-color">Items per page: </span>
       <p-dropdown [options]="options" optionLabel="label" optionValue="value" [(ngModel)]="rows2"
         (ngModelChange)="first2 = 0"></p-dropdown>
       <p-paginator [first]="first2" [rows]="rows2" [totalRecords]="120" (onPageChange)="onPageChange2($any($event))"
         [showCurrentPageReport]="true" currentPageReportTemplate="{first} - {last} of {totalRecords}"
         [showPageLinks]="false" [showFirstLastIcon]="false"></p-paginator>
-    </div>
+    </div> -->
   </div>
 
-  <p-table [value]="allLeaveRequests" [tableStyle]="{'width': '100%'}">
+  <p-table [value]="allLeaveRequests" [tableStyle]="{'width': '100%'}"
+  [rowHover]="true" [rows]="5"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25]"  [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    >
 
     <ng-template pTemplate="colgroup">
       <colgroup>
