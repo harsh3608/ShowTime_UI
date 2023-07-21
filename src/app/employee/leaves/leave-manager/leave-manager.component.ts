@@ -7,6 +7,7 @@ import { LeaveDTO } from '../../shared/models/leave-models';
 import { ToastrService } from 'ngx-toastr';
 import { Table } from 'primeng/table';
 import { LeaveTypeOptions } from '../../shared/enums/leave-enums';
+import { LeaveDetailsComponent } from '../leave-details/leave-details.component';
 
 @Component({
   selector: 'app-leave-manager',
@@ -43,7 +44,6 @@ export class LeaveManagerComponent implements OnInit{
         data: {  }
       }
     );
-    dialogRef.addPanelClass('rounded-dialog-container');
     dialogRef.afterClosed().subscribe(result => {
       this.GetAllEmpLeaves();
       this.GetEmpLeaves();
@@ -90,6 +90,18 @@ export class LeaveManagerComponent implements OnInit{
 
   GetLeaveType(index: number): string {
     return this.leaveTypeOptions[index];
+  }
+
+  OpenLeaveDetailsDialog(id:any){
+    const dialogRef = this.dialog.open(LeaveDetailsComponent,
+      {
+        data: { leaveId: id }
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      this.GetAllEmpLeaves();
+      this.GetEmpLeaves();
+    });
   }
 
 
