@@ -21,6 +21,7 @@ export class LeaveManagerComponent implements OnInit{
   allLeaveRequests:LeaveDTO[]=[];
   userLeaveRequests:LeaveDTO[]=[];
   leaveTypeOptions: string[] = [] ;
+  isAdmin: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -30,9 +31,12 @@ export class LeaveManagerComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+    if(this.authService.getUserRole() == 'Admin') { this.isAdmin = true; }
+
     this.leaveTypeOptions = Object.keys(LeaveTypeOptions)
     .filter(key => isNaN(Number(key))) // Exclude numeric keys, if any
     .map(key => LeaveTypeOptions[key as keyof typeof LeaveTypeOptions]);
+
     this.employeeId = this.authService.getUserId();
     this.GetAllEmpLeaves();
     this.GetEmpLeaves();

@@ -38,6 +38,7 @@ export class LeaveDetailsComponent implements OnInit{
   leaveTypeOptions: string[] = [] ;
   showToggle:boolean = false;
   showDeleteButton:boolean = false;
+  isAdmin:boolean=false;
 
 
   constructor(
@@ -50,6 +51,7 @@ export class LeaveDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
+    if(this.authService.getUserRole() == 'Admin') { this.isAdmin = true; }
     this.GetLeaveDetails();
 
 
@@ -91,10 +93,10 @@ export class LeaveDetailsComponent implements OnInit{
           this.viewForm.setValue(this.leave);
           this.ChangeFormControls();
           //console.log(this.leave);
-          if(this.leave.managerId == this.userId){
+          if(this.leave.managerId == this.userId || this.isAdmin ){
             this.showToggle = true;
           };
-          if(this.leave.userId == this.userId ){
+          if(this.leave.userId == this.userId || this.isAdmin ){
             this.showDeleteButton = true;
           }
         }else{

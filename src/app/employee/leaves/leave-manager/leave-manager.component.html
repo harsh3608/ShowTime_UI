@@ -10,13 +10,13 @@
 
     <div class="d-flex flex-row">
 
-      <div class="mx-3">
+      <div class="mx-3" *ngIf="!isAdmin">
         <button class="btn btn-outline-info" (click)="OpenCalendarDialog()">
           Your Leave Calendar
         </button>
       </div>
 
-      <div class="mx-3">
+      <div class="mx-3" *ngIf="!isAdmin">
         <button class="btn btn-outline-success" (click)="OpenAddLeaveDialog()">Apply Leave</button>
       </div>
 
