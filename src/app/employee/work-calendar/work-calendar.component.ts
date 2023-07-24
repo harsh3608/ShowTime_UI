@@ -17,12 +17,6 @@ export class WorkCalendarComponent implements OnInit{
   customEvents: EventInput[] = [];
   isLoading: boolean = true;
 
-  events = this.workingTimes.map((workingHour) => {
-    return {
-      title: 'Working Hours',
-      date: workingHour.date,
-    };
-  });
 
   constructor(
     private punchService: PunchService,
@@ -53,6 +47,7 @@ export class WorkCalendarComponent implements OnInit{
 
   CreateCustomEvents() {
     this.workingTimes.forEach(element => {
+
       let event = { title: `${element.workingTime.toFixed(2)} hrs`, date: element.date.split('T')[0] }
 
       this.customEvents.push(event);
