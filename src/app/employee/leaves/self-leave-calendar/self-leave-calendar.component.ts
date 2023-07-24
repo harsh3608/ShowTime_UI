@@ -43,6 +43,10 @@ export class SelfLeaveCalendarComponent implements OnInit{
       this.isLoading = false;
     }, 1500);
 
+    this.InitiateCalendar();
+  }
+
+  InitiateCalendar(){
     setTimeout(() => {
       const calendarEl: HTMLElement = this.elementRef.nativeElement.querySelector('#calendar')!;
       const calendar = new Calendar(calendarEl, {
@@ -55,7 +59,6 @@ export class SelfLeaveCalendarComponent implements OnInit{
     }, 1500);
   }
 
-
   HandleEventClick(eventInfo: any) {
   const event = eventInfo.event;
   const eventId = event.extendedProps.id;
@@ -66,6 +69,7 @@ export class SelfLeaveCalendarComponent implements OnInit{
     }
   );
   dialogRef.afterClosed().subscribe(result => {
+    this.dialog.closeAll();
   });
   }
 

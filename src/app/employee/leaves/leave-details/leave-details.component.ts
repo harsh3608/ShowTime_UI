@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { LeaveService } from '../../shared/services/leave.service';
 import { LeaveDTO, ToggleLeaveStatusDTO } from '../../shared/models/leave-models';
 import { ToastrService } from 'ngx-toastr';
@@ -37,17 +37,21 @@ export class LeaveDetailsComponent implements OnInit{
   halfDayShiftoptions: string[] = [] ;
   leaveTypeOptions: string[] = [] ;
   showToggle:boolean = false;
+  showDeleteButton:boolean = false;
 
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private leaveService: LeaveService,
     private toastr: ToastrService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialogRef: MatDialogRef<LeaveDetailsComponent>,
   ) {}
 
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
+    this.GetLeaveDetails();
+
 
     this.halfDayShiftoptions = Object.keys(HalfDayShiftOptions)
     .filter(key => isNaN(Number(key))) // Exclude numeric keys, if any
@@ -75,7 +79,7 @@ export class LeaveDetailsComponent implements OnInit{
       dateOfRequest: new FormControl('')
     })
 
-    this.GetLeaveDetails();
+    
 
   }
 
@@ -89,6 +93,9 @@ export class LeaveDetailsComponent implements OnInit{
           //console.log(this.leave);
           if(this.leave.managerId == this.userId){
             this.showToggle = true;
+          };
+          if(this.leave.userId == this.userId ){
+            this.showDeleteButton = true;
           }
         }else{
           this.toastr.warning(res.message, 'Warning', {
@@ -105,7 +112,6 @@ export class LeaveDetailsComponent implements OnInit{
       value: value
     };
     console.log(this.toggleData);
-    
     this.leaveService.ToggleLeaveStatus(this.toggleData).subscribe(
       (res)=>{
         if(res.isSuccess){
@@ -120,6 +126,7 @@ export class LeaveDetailsComponent implements OnInit{
         }
       }
     );
+    
   }
 
   ChangeFormControls() {
@@ -129,6 +136,26 @@ export class LeaveDetailsComponent implements OnInit{
     var val2 = this.leave.leaveType;
     this.viewForm.controls['leaveType'].setValue(this.leaveTypeOptions[val2]);
   }
+
+  DeleteLeaveRequest(id: any){
+    this.leaveService.DeleteLeaveRequest(id).subscribe(
+      (res)=> {
+        if(res.isSuccess){
+          this.toastr.success(res.message, 'Success', {
+            timeOut:2000,
+          });
+          this.dialogRef.close();
+        }else{
+          this.toastr.warning(res.message, 'Failure', {
+            timeOut:2000,
+          });
+        };
+      }
+    );
+  }
+
+
+
 
 
 
