@@ -57,15 +57,15 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>Status </th>
-        <th>Employee Name </th>
-        <th>Leave Type </th>
-        <th>Paid leave </th>
-        <th pSortableColumn="startDate">From <p-sortIcon field="startDate"></p-sortIcon></th>
-        <th pSortableColumn="endDate">To <p-sortIcon field="endDate"></p-sortIcon></th>
-        <th>Days Taken </th>
-        <th pSortableColumn="dateOfRequest">Request Date <p-sortIcon field="dateOfRequest"></p-sortIcon></th>
-        <th></th>
+        <th id="status">Status </th>
+        <th id="username">Employee Name </th>
+        <th id="leaveType">Leave Type </th>
+        <th id="isPaid">Paid leave </th>
+        <th id="startDate" pSortableColumn="startDate">From <p-sortIcon field="startDate"></p-sortIcon></th>
+        <th id="endDate" pSortableColumn="endDate">To <p-sortIcon field="endDate"></p-sortIcon></th>
+        <th id="leavedays">Days Taken </th>
+        <th id="dateOfRequest" pSortableColumn="dateOfRequest">Request Date <p-sortIcon field="dateOfRequest"></p-sortIcon></th>
+        <th id="empty"></th>
       </tr>
     </ng-template>
 
