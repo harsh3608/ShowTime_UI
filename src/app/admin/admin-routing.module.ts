@@ -7,7 +7,8 @@ const routes: Routes = [{
   path:'home',
   component:AdminDashboardComponent,
   canActivate: [AdminGuard]
-}];
+}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

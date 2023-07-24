@@ -67,7 +67,6 @@ export class LeaveAddDialogComponent implements OnInit{
     this.isLoading = true;
     setTimeout(() => {
       this.addLeaveRequestForm.markAllAsTouched();
-      console.log(this.addLeaveRequestForm.value);
       this.leaveRequest = this.addLeaveRequestForm.value;
       this.leaveService.AddLeaveRequest(this.leaveRequest).subscribe(
         (res) => {
@@ -105,17 +104,6 @@ export class LeaveAddDialogComponent implements OnInit{
 
     
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -9,8 +9,15 @@
     </div>
 
     <div class="d-flex flex-row">
-      <div class="mx-3">
-        <button class="btn btn-outline-primary" (click)="OpenAddLeaveDialog()">Apply Leave</button>
+
+      <div class="mx-3" *ngIf="!isAdmin">
+        <button class="btn btn-outline-info" (click)="OpenCalendarDialog()">
+          Your Leave Calendar
+        </button>
+      </div>
+
+      <div class="mx-3" *ngIf="!isAdmin">
+        <button class="btn btn-outline-success" (click)="OpenAddLeaveDialog()">Apply Leave</button>
       </div>
 
       <div class="mx-3" style="margin-bottom: 5%;">
@@ -31,8 +38,8 @@
 
   </div>
 
-  <p-table #dt [value]="allLeaveRequests" [tableStyle]="{'width': '100%'}" [rowHover]="true" [rows]="5"
-    [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,25]" [paginator]="true"
+  <p-table #dt [value]="allLeaveRequests" [tableStyle]="{'width': '100%'}" [rowHover]="true" [rows]="10"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,35]" [paginator]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
 
     <ng-template pTemplate="colgroup">
@@ -50,15 +57,15 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>Status </th>
-        <th>Employee Name </th>
-        <th>Leave Type </th>
-        <th>Paid leave </th>
-        <th pSortableColumn="startDate">From <p-sortIcon field="startDate"></p-sortIcon></th>
-        <th pSortableColumn="endDate">To <p-sortIcon field="endDate"></p-sortIcon></th>
-        <th>Days Taken </th>
-        <th pSortableColumn="dateOfRequest">Request Date <p-sortIcon field="dateOfRequest"></p-sortIcon></th>
-        <th></th>
+        <th id="status">Status </th>
+        <th id="username">Employee Name </th>
+        <th id="leaveType">Leave Type </th>
+        <th id="isPaid">Paid leave </th>
+        <th id="startDate" pSortableColumn="startDate">From <p-sortIcon field="startDate"></p-sortIcon></th>
+        <th id="endDate" pSortableColumn="endDate">To <p-sortIcon field="endDate"></p-sortIcon></th>
+        <th id="leavedays">Days Taken </th>
+        <th id="dateOfRequest" pSortableColumn="dateOfRequest">Request Date <p-sortIcon field="dateOfRequest"></p-sortIcon></th>
+        <th id="empty"></th>
       </tr>
     </ng-template>
 

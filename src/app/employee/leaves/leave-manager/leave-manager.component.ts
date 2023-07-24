@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Table } from 'primeng/table';
 import { LeaveTypeOptions } from '../../shared/enums/leave-enums';
 import { LeaveDetailsComponent } from '../leave-details/leave-details.component';
+import { SelfLeaveCalendarComponent } from '../self-leave-calendar/self-leave-calendar.component';
 
 @Component({
   selector: 'app-leave-manager',
@@ -20,6 +21,7 @@ export class LeaveManagerComponent implements OnInit{
   allLeaveRequests:LeaveDTO[]=[];
   userLeaveRequests:LeaveDTO[]=[];
   leaveTypeOptions: string[] = [] ;
+  isAdmin: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -29,9 +31,12 @@ export class LeaveManagerComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+    if(this.authService.getUserRole() == 'Admin') { this.isAdmin = true; }
+
     this.leaveTypeOptions = Object.keys(LeaveTypeOptions)
     .filter(key => isNaN(Number(key))) // Exclude numeric keys, if any
     .map(key => LeaveTypeOptions[key as keyof typeof LeaveTypeOptions]);
+
     this.employeeId = this.authService.getUserId();
     this.GetAllEmpLeaves();
     this.GetEmpLeaves();
@@ -103,6 +108,17 @@ export class LeaveManagerComponent implements OnInit{
   }
 
 
+  OpenCalendarDialog() {
+    const dialogRef = this.dialog.open(SelfLeaveCalendarComponent,
+      {
+        data: {  }
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      this.GetAllEmpLeaves();
+      this.GetEmpLeaves();
+    });
+  }
 
 
 
