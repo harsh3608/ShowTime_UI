@@ -15,7 +15,13 @@
     </div>
 
     <div>
-         
+        <div class="p-2" style="width: 600px ;margin-left: 50px;" *ngIf="!isLoading">
+            <div id="calendar"></div> 
+        </div>
+        
+        <div *ngIf="isLoading" style="margin-top: 30%; margin-left: 40%;">
+            <mat-spinner></mat-spinner>
+        </div>
     </div>
 
 
