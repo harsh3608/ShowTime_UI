@@ -4,6 +4,7 @@ import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashbo
 import { EmployeeGuard } from './shared/authorization/guards/employee.guard';
 import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
 import { LeaveManagerComponent } from './leaves/leave-manager/leave-manager.component';
+import { CommonGuard } from './shared/authorization/guards/common.guard';
 
 const routes: Routes = [{
   path:'home',
@@ -18,7 +19,7 @@ const routes: Routes = [{
 {
   path:'leave-manager',
   component: LeaveManagerComponent,
-  canActivate: [EmployeeGuard]
+  canActivate: [CommonGuard]
 }
 ];
 
