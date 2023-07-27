@@ -48,7 +48,11 @@ export class WorkCalendarComponent implements OnInit{
   CreateCustomEvents() {
     this.workingTimes.forEach(element => {
 
-      let event = { title: `${element.workingTime.toFixed(2)} hrs`, date: element.date.split('T')[0] }
+      let event = { 
+        title: this.SetTitle(element.workingTime), 
+        date: element.date.split('T')[0] ,
+        color: this.SetColor(element.workingTime)
+      }
 
       this.customEvents.push(event);
 
@@ -56,6 +60,21 @@ export class WorkCalendarComponent implements OnInit{
     
   }
 
+  SetTitle(time: number) {
+    if(time < 0.10){
+      return 'Day-Off';
+    }else{
+      return `${time.toFixed(2)} hrs`
+    }
+  }
+
+  SetColor(time: number){
+    if(time < 0.10){
+      return 'orange';
+    }else{
+      return 'green'
+    }
+  }
 
   GetWorkingHours(){
     this.punchService.GetAllDaysWorkingTime(this.userId).subscribe(
