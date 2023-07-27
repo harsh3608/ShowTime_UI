@@ -39,7 +39,8 @@ export class LeaveDetailsComponent implements OnInit{
   showToggle:boolean = false;
   showDeleteButton:boolean = false;
   isAdmin:boolean=false;
-
+  currentDate:any = new Date().toDateString();
+  isLeaveExpired: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -93,6 +94,9 @@ export class LeaveDetailsComponent implements OnInit{
           this.viewForm.setValue(this.leave);
           this.ChangeFormControls();
           //console.log(this.leave);
+          if(this.leave.endDate < this.currentDate){
+            this.isLeaveExpired = true;
+          };
           if(this.leave.managerId == this.userId || this.isAdmin ){
             this.showToggle = true;
           };
