@@ -54,6 +54,8 @@ export class SelfLeaveCalendarComponent implements OnInit{
         initialView: 'dayGridMonth',
         events: this.customEvents,        // Pass the events array here
         eventClick: this.HandleEventClick.bind(this),    // Add the eventClick callback here
+        //weekends: false,
+
       });
       calendar.render();
     }, 1500);

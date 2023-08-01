@@ -90,7 +90,7 @@
 
 
 
-            <div class="row p-2 m-2" *ngIf="showDeleteButton">
+            <div class="row p-2 m-2" *ngIf="showDeleteButton && !isLeaveExpired">
                 <div class="col p-1">
                     <button class="btn btn-outline-danger" (click)="DeleteLeaveRequest(leave.id)">
                         <div class="d-flex">
