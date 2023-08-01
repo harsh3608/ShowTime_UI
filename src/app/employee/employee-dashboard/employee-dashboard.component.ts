@@ -20,8 +20,8 @@ export class EmployeeDashboardComponent implements OnInit {
   isPunchedIn: boolean = false;
   punchedInUsers: Punch[] = [];
   punchesForToday: Punch[] = [];
-  punchedinTime!: TimeSpan;
-  formattedPunchedinTime!: string;
+  punchedinTime: TimeSpan = { hours: 0o0, minutes: 0o0, seconds: 0 };
+  formattedPunchedinTime: string = '0h:00m';
   workingTimes: WorkingTime[] = [];
 
 
@@ -82,7 +82,7 @@ export class EmployeeDashboardComponent implements OnInit {
     this.GetUserStatus();
     this.GetAllPunchedUsers();
     this.GetAllPunchesForToday();
-    this.GetFiveDaysWorkingTime();
+    //this.GetFiveDaysWorkingTime();
   }
 
 
