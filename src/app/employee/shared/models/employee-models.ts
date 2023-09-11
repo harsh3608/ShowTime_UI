@@ -45,4 +45,16 @@ export interface PasswordReturnResponse {
   message: string
 }
 
+export interface DobDTO {
+  personName: string 
+  dateOfBirth : Date
+  UserId : any
+  email : string
+}
 
+export interface DobResponse {
+  statusCode: number
+  isSuccess: boolean
+  response: DobDTO[]
+  message: string
+}

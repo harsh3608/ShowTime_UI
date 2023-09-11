@@ -58,6 +58,24 @@
 
         <div class="col mb-5">
             <div class="container border p-2">
+                <h1 class="p-2"> Happy Birthday To... </h1>
+
+                <div style="height: 200px; overflow-y: scroll;">
+                    <div class="container border m-1  p-3 " *ngFor="let userDob of allUsersDob"
+                        style="width: 95%; height: 50px;">
+                        <div class="d-flex flex-row justify-content-between ">
+                            <h2>{{userDob.personName}}</h2>
+                            <h3>{{userDob.dateOfBirth | date: 'dd-MMM-yyyy'}}</h3>
+                            <h3>{{userDob.email}}</h3>
+                        </div>
+                    </div>
+                    <div *ngIf="allUsersDob.length==0">
+                        <img src="../../../assets/images/no-Birthday.png"  />
+                    </div>
+                </div>
+
+            </div>
+            <div class="container border p-2 mt-5">
                 <h1 class="p-3"> Your Punches For Today !</h1>
 
                 <div style="height: 400px; overflow-y: scroll;">

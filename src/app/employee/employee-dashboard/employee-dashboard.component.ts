@@ -8,6 +8,8 @@ import { ChartOptions, ChartDataset } from 'chart.js';
 import Chart from 'chart.js/auto';
 import * as $ from 'jquery';
 import 'bootstrap';
+import { GeneralService } from '../shared/services/general.service';
+import { DobDTO } from '../shared/models/employee-models';
 
 @Component({
   selector: 'app-employee-dashboard',
@@ -41,11 +43,13 @@ export class EmployeeDashboardComponent implements OnInit {
   ];
   elementRef: any;
 
+  allUsersDob: DobDTO[] = [];
 
   constructor(
     private punchService: PunchService,
     private authService: AuthService,
     private toastr: ToastrService,
+    private generalService : GeneralService
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +57,7 @@ export class EmployeeDashboardComponent implements OnInit {
     this.userId = this.authService.getUserId();
     this.userName = this.authService.getPersonName();
     this.CallCommonFunctions();
-
+    this.GetAllDOB();
 
   }
 
@@ -187,6 +191,25 @@ export class EmployeeDashboardComponent implements OnInit {
       }
     )
   }
+
+  GetAllDOB(){
+    this.generalService.GetAllUsersDob().subscribe((response)=>{
+      if(response.isSuccess) {
+        let todayData:Date = new Date();
+        let formatedTodayData=todayData.getDate()+"/"+todayData.getMonth()+"/"+todayData.getFullYear();
+        response.response.forEach(element=>{
+          let requiredDate = new Date(element.dateOfBirth).getDate()+"/"+todayData.getMonth()+"/"+todayData.getFullYear()
+          if(requiredDate == formatedTodayData)
+          {
+            this.allUsersDob.push(element)
+          }
+        })
+      }
+      console.log(this.allUsersDob);
+    })
+  }
+
+
 
 
 }
