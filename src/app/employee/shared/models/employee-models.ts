@@ -16,6 +16,8 @@ export interface AuthenticationResponse {
   userType: string
   token: string
   expiration: string
+  managerId: any
+  managerName: string
 }
 
 export interface RegisterDTO {

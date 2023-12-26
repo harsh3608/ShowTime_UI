@@ -18,6 +18,18 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { WorkCalendarComponent } from './work-calendar/work-calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { LeaveAddDialogComponent } from './leaves/leave-add-dialog/leave-add-dialog.component';
+import { LeaveManagerComponent } from './leaves/leave-manager/leave-manager.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { ButtonModule } from "primeng/button";
+import { DisableWeekendsDirective } from './shared/directives/disable-weekends.directive';
+import { SelfLeaveCalendarComponent } from './leaves/self-leave-calendar/self-leave-calendar.component';
+import { LeaveDetailsComponent } from './leaves/leave-details/leave-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +37,12 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     EmployeeMenuComponent,
     EmployeeDashboardComponent,
     ChangePasswordComponent,
-    WorkCalendarComponent
+    WorkCalendarComponent,
+    LeaveAddDialogComponent,
+    LeaveManagerComponent,
+    DisableWeekendsDirective,
+    SelfLeaveCalendarComponent,
+    LeaveDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +63,16 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     MatDialogModule,
     MatMenuModule,
     FullCalendarModule,
-  ]
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    TableModule,
+    PaginatorModule,
+    InputSwitchModule,
+    ButtonModule,
+
+    
+  ],
+  exports:[DisableWeekendsDirective]
 })
 export class EmployeeModule { }

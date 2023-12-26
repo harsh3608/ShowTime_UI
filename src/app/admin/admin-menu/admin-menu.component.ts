@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ChangePasswordComponent } from 'src/app/employee/change-password/change-password.component';
 import { AuthService } from 'src/app/employee/shared/authorization/auth.service';
 
 @Component({
@@ -24,6 +25,17 @@ export class AdminMenuComponent implements OnInit{
 
   
  
+  openChangePasswordDialog(){
+    const dialogRef = this.dialog.open(ChangePasswordComponent,
+      {
+        data: {  }
+      }
+    );
+    dialogRef.addPanelClass('rounded-dialog-container');
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
   openLogOutDialog(){
     const dialogRef: MatDialogRef<any> = this.dialog.open(
       this.dialogTemplate ,

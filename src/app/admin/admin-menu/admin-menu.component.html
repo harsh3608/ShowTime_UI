@@ -20,6 +20,12 @@
 
         &nbsp;
 
+        <button mat-button class="mt-3" routerLink="/employee/leave-manager">
+            <span class="material-icons">
+                insert_invitation
+            </span>
+        </button>
+
         <button mat-button [matMenuTriggerFor]="menu" class="mt-3">
             <span class="material-icons">
                 account_circle
@@ -35,7 +41,7 @@
                 &nbsp;Manage Account
             </button>
 
-            <button mat-menu-item>
+            <button mat-menu-item (click)="openChangePasswordDialog()">
                 <span class="material-icons">
                     sync_lock
                 </span>
