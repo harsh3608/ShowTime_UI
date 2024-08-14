@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "ShowTime_UI": {
-      "projectType": "application",
+      "projectType": "application", 
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
