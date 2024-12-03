@@ -23,6 +23,8 @@ export class AdminMenuComponent implements OnInit{
     
   }
 
+  
+ 
   openChangePasswordDialog(){
     const dialogRef = this.dialog.open(ChangePasswordComponent,
       {
